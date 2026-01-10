@@ -1,0 +1,67 @@
+import React from 'react';
+
+const Footer: React.FC = () => {
+  return (
+    <footer className="bg-[#e5e5e5] pt-20 pb-10 px-6 md:px-20 border-t border-gray-300">
+      <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="col-span-1 md:col-span-2">
+          <h2 className="text-2xl font-bold tracking-widest mb-4">THE H BRAND</h2>
+          <p className="text-sm text-gray-600 leading-relaxed max-w-md">
+            THE H Brand는 공간을 설계하고 완성하는 법인입니다.<br/>
+            고객은 디에이치를 기억하고, 계약은 디에이치브랜드가 책임집니다.
+          </p>
+        </div>
+        
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Contact</h3>
+          <p className="text-sm text-gray-600 mb-2">광주광역시 광산구 풍영로 206, 3층</p>
+          <p className="text-sm text-gray-600 mb-2">+82 062-000-0000</p>
+          <p className="text-sm text-gray-600">thehbrand@naver.com</p>
+        </div>
+
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Social</h3>
+          <ul className="space-y-2">
+            <li>
+              <a 
+                href="http://instagram.com/design_theh" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a 
+                href="http://instagram.com/design_theh_" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                Blog
+              </a>
+            </li>
+            <li>
+              <a 
+                href="https://ohou.se/experts/myhome/14990007?type=summaries" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                OHouse
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-20 pt-8 border-t border-gray-300 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+        <p>&copy; {new Date().getFullYear()} THE H BRAND. All Rights Reserved.</p>
+        <p className="mt-2 md:mt-0">Design & Build in Gwangju/Jeonnam</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
