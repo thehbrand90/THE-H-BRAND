@@ -10,8 +10,6 @@ const About: React.FC = () => {
     '/myweb-images-identity6.jpg',
     '/myweb-images-identity7.jpg',
     '/myweb-images-identity8.jpg',
-    '/myweb-images-identity9.jpg',
-    '/myweb-images-identity10.jpg',
   ];
 
   return (
@@ -165,8 +163,8 @@ const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Bottom Row: 8 Image Grid (Identity 3-10) */}
-            <div className="grid grid-cols-2 md:grid-cols-4">
+            {/* Bottom Row: 6 Image Grid (Identity 3-8) */}
+            <div className="grid grid-cols-2 md:grid-cols-3">
                {identityGridImages.map((src, idx) => (
                  <div key={idx} className="relative aspect-square overflow-hidden group">
                    <img 
