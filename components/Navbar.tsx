@@ -31,32 +31,42 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false);
   }, [location]);
 
+  // Prevent background scrolling when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isMenuOpen]);
+
   // Dynamic text color based on scroll and menu state
-  const textColor = isScrolled || isMenuOpen || location.pathname !== '/' ? 'text-[#222625]' : 'text-white';
-  const logoColor = isScrolled || isMenuOpen || location.pathname !== '/' ? 'text-[#222625]' : 'text-white';
-  const bgColor = isScrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-md' : 'bg-transparent';
+  // On mobile, if menu is closed and we are on top of home, text is white. 
+  // If menu is open, text should be dark.
+  const isHomeTop = location.pathname === '/' && !isScrolled;
   
-  // Update border logic: 
-  // If scrolled, menu is open, OR NOT on homepage -> use visible gray border
-  // If on homepage and at top -> use subtle white border
-  const borderColor = isScrolled || isMenuOpen || location.pathname !== '/' ? 'border-gray-300' : 'border-white/20';
+  const textColor = (isMenuOpen || !isHomeTop) ? 'text-[#222625]' : 'text-white';
+  const logoColor = (isMenuOpen || !isHomeTop) ? 'text-[#222625]' : 'text-white';
+  const bgColor = isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-transparent';
+  const borderColor = (isMenuOpen || !isHomeTop) ? 'border-gray-300' : 'border-white/20';
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${bgColor} ${borderColor}`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${bgColor} ${borderColor} ${isMenuOpen ? 'bg-[#f1f1f1] border-none' : ''}`}
     >
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-24 flex justify-between items-center">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-20 md:h-24 flex justify-between items-center">
         
         {/* LEFT: Logo (Horizontal) */}
-        <div className="flex items-center z-50">
-          <Link to="/" className="group flex items-baseline">
-             <span className={`text-2xl md:text-3xl font-bold tracking-widest transition-colors duration-300 ${logoColor}`}>
+        <div className="flex items-center z-50 relative">
+          <Link to="/" className="group flex items-baseline" onClick={() => setIsMenuOpen(false)}>
+             <span className={`text-xl md:text-3xl font-bold tracking-widest transition-colors duration-300 ${logoColor}`}>
                 THE H
              </span>
-             <span className={`text-2xl md:text-3xl font-light tracking-widest transition-colors duration-300 ${logoColor} ml-2`}>
+             <span className={`text-xl md:text-3xl font-light tracking-widest transition-colors duration-300 ${logoColor} ml-2`}>
                 BRAND
              </span>
-             <span className={`text-xs md:text-sm font-light tracking-widest transition-colors duration-300 ${logoColor} ml-1`}>
+             <span className={`hidden md:inline-block text-xs md:text-sm font-light tracking-widest transition-colors duration-300 ${logoColor} ml-1`}>
                 co.,Ltd
              </span>
           </Link>
@@ -77,42 +87,46 @@ const Navbar: React.FC = () => {
             ))}
           </div>
           
-          {/* User / Admin Icon (Changed from Login to Admin) */}
+          {/* User / Admin Icon */}
           <Link 
             to="/admin"
-            className={`z-50 p-2 ml-4 md:ml-10 hover:opacity-60 transition-opacity ${textColor}`}
+            className={`hidden md:block z-50 p-2 ml-4 md:ml-10 hover:opacity-60 transition-opacity ${textColor}`}
             aria-label="Admin Login"
           >
             <User size={24} strokeWidth={1.5} />
           </Link>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Hamburger */}
           <button 
-            className={`md:hidden z-50 p-2 ml-2 ${textColor}`}
+            className={`md:hidden z-50 p-2 ml-2 transition-colors duration-300 ${textColor}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
         {/* Mobile Menu Overlay */}
-        <div className={`fixed inset-0 bg-[#f1f1f1] flex flex-col justify-center items-center transition-transform duration-500 ease-in-out md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div 
+          className={`fixed inset-0 bg-[#f1f1f1] z-40 flex flex-col justify-center items-center transition-transform duration-500 ease-in-out md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          style={{ height: '100dvh' }} // Use dynamic viewport height for mobile browsers
+        >
           <div className="flex flex-col space-y-8 text-center">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-3xl font-light tracking-wider text-[#222625] hover:text-gray-500 transition-colors"
+                className="text-2xl font-light tracking-wider text-[#222625] hover:text-gray-500 transition-colors py-2"
               >
                 {item.label}
               </Link>
             ))}
             <Link
                 to="/admin"
-                className="text-3xl font-light tracking-wider text-[#222625] hover:text-gray-500 transition-colors pt-8 border-t border-gray-300 w-20 mx-auto"
+                className="text-lg font-light tracking-wider text-[#222625] hover:text-gray-500 transition-colors pt-8 border-t border-gray-300 w-20 mx-auto"
               >
                 ADMIN
-              </Link>
+            </Link>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ const Contact: React.FC = () => {
           <div className="relative w-full h-full min-h-[400px] group overflow-hidden">
              {/* Background Image */}
              <img 
-               src="/myweb-images-contact1.jpg" 
+               src="https://i.postimg.cc/7ZL03SRv/contact1.jpg" 
                alt="Contact Inquiry" 
                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
              />
