@@ -62,7 +62,7 @@ const Process: React.FC = () => {
   return (
     <div className="pt-32 pb-20 px-6 md:px-20 max-w-[1600px] mx-auto min-h-screen">
       <div className="mb-20">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#222625] mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-brand-dark mb-6">
           PROCESS
         </h1>
         <p className="text-sm md:text-base font-light text-gray-600 max-w-2xl leading-relaxed">
@@ -74,15 +74,15 @@ const Process: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
         {steps.map((step) => (
-          <div key={step.num} className="border-t border-[#222625] pt-8 group hover:bg-white hover:p-8 hover:shadow-xl transition-all duration-300 flex flex-col min-h-[300px] overflow-hidden">
+          <div key={step.num} className="border-t border-brand-dark pt-8 group hover:bg-white hover:p-8 hover:shadow-xl transition-all duration-300 flex flex-col min-h-[300px] overflow-hidden">
             <div className="flex justify-between items-baseline mb-5">
-               <span className="text-3xl md:text-4xl font-light text-gray-300 group-hover:text-[#222625] transition-colors font-montserrat">{step.num}</span>
+               <span className="text-3xl md:text-4xl font-light text-gray-300 group-hover:text-brand-brown transition-colors font-montserrat">{step.num}</span>
             </div>
-            <h3 className="text-lg md:text-xl font-bold mb-4 text-[#222625]">{step.title}</h3>
+            <h3 className="text-lg md:text-xl font-bold mb-4 text-brand-dark">{step.title}</h3>
             <ul className="space-y-2 overflow-x-auto pb-2">
               {step.details.map((detail, index) => (
                 <li key={index} className="text-gray-600 font-light text-[11px] md:text-xs leading-relaxed flex items-center whitespace-nowrap tracking-tight">
-                  <span className="mr-2 w-1 h-1 bg-gray-400 rounded-full flex-shrink-0"></span>
+                  <span className="mr-2 w-1 h-1 bg-brand-brown rounded-full flex-shrink-0"></span>
                   {detail}
                 </li>
               ))}

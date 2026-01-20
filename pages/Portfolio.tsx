@@ -28,7 +28,7 @@ const Portfolio: React.FC = () => {
         {/* Header & Filter */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 px-2">
           <div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-[#222625]">PORTFOLIO</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-brand-dark">PORTFOLIO</h1>
             <p className="text-gray-500">Premium spaces crafted by THE H BRAND.</p>
           </div>
           
@@ -37,7 +37,7 @@ const Portfolio: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`text-sm uppercase tracking-widest transition-colors whitespace-nowrap ${filter === cat ? 'text-[#222625] font-bold border-b border-[#222625]' : 'text-gray-400 hover:text-[#222625]'}`}
+                className={`text-sm uppercase tracking-widest transition-colors whitespace-nowrap ${filter === cat ? 'text-brand-brown font-bold border-b border-brand-brown' : 'text-gray-400 hover:text-brand-dark'}`}
               >
                 {cat}
               </button>
@@ -49,7 +49,7 @@ const Portfolio: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
           {filteredProjects.map((project) => (
             <div key={project.id} className="group cursor-pointer">
-              <div className="aspect-[4/3] overflow-hidden bg-gray-200 mb-4">
+              <div className="aspect-[4/3] overflow-hidden bg-brand-stone mb-4">
                 <img 
                   src={project.image} 
                   alt={project.title} 
@@ -58,10 +58,10 @@ const Portfolio: React.FC = () => {
               </div>
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="text-xl font-medium mb-1 text-[#222625]">{project.title}</h3>
+                  <h3 className="text-xl font-medium mb-1 text-brand-dark group-hover:text-brand-brown transition-colors">{project.title}</h3>
                   <p className="text-sm text-gray-500">{project.description}</p>
                 </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 border border-gray-300 px-2 py-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-brown border border-brand-brown/30 px-2 py-1">
                   {project.category}
                 </span>
               </div>

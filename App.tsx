@@ -28,7 +28,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen font-montserrat text-[#1a1a1a] bg-[#f1f1f1]">
+      <div className="flex flex-col min-h-screen font-montserrat text-brand-dark bg-brand-bg">
         <Navbar />
         <main className="flex-grow">
           <Routes>
