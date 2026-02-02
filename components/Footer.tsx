@@ -1,4 +1,7 @@
 import React from 'react';
+import * as ReactRouterDOM from 'react-router-dom';
+
+const { Link } = ReactRouterDOM;
 
 const Footer: React.FC = () => {
   return (
@@ -57,8 +60,18 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="mt-20 pt-8 border-t border-brand-dark/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-        <p>&copy; {new Date().getFullYear()} THE H BRAND. All Rights Reserved.</p>
-        <p className="mt-2 md:mt-0">Design & Build in Gwangju/Jeonnam</p>
+        <div className="flex flex-col md:flex-row items-center md:space-x-6">
+            <p>&copy; {new Date().getFullYear()} THE H BRAND. All Rights Reserved.</p>
+            <div className="mt-4 md:mt-0 flex space-x-6">
+                <Link to="/terms" className="hover:text-brand-dark transition-colors underline">
+                    이용약관 (Terms of Use)
+                </Link>
+                <Link to="/privacy" className="hover:text-brand-dark transition-colors underline">
+                    개인정보처리방침 (Privacy Policy)
+                </Link>
+            </div>
+        </div>
+        <p className="mt-4 md:mt-0">Design & Build in Gwangju/Jeonnam</p>
       </div>
     </footer>
   );

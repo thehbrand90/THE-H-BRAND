@@ -211,25 +211,29 @@ const About: React.FC = () => {
                       <div className="w-16 md:w-20 h-2 bg-brand-brown mb-8 md:mb-12"></div>
                       
                       <p className="text-xl md:text-3xl font-bold text-brand-dark mb-8 md:mb-12 leading-snug">
-                      디자인은 누구나,<br/> 완성은 THE H BRAND.
+                        디자인은 누구나, 완성은 디에이치,<br/>
+                        책임은 (주) 디에이치브랜드.
                       </p>
                       
                       <div className="space-y-6 text-gray-600 leading-loose text-base md:text-lg font-light">
                           <p>
-                          THE H BRAND는<br/>
-                          기본에 충실한 시공과 정직한 프로세스를 바탕으로<br/>
-                          신뢰할 수 있는 공간을 만듭니다.
+                            개인의 감각만으로 완성되는 인테리어에는<br/>
+                            프로젝트 규모가 커질수록 한계가 생깁니다.
                           </p>
                           <p>
-                          우리는 단순히 공간을 꾸미는 회사가 아니라,<br/>
-                          사람이 가장 오래 머무는 환경을<br/>
-                          책임지고 완성하는 법인 시공사입니다.
+                            (주)디에이치브랜드는 광주·전남을 기반으로<br/>
+                            계약부터 공정관리, 준공, A/S까지<br/>
+                            법인의 기준으로 책임지는 Design & Build 시공사입니다.
                           </p>
                           <p>
-                          디자인의 결과보다<br/>
-                          과정의 기준을 먼저 생각하며,<br/>
-                          고객의 신뢰를<br/>
-                          모든 판단의 출발점으로 삼습니다.
+                            우리는 단순히 공간을 꾸미는 것을 넘어,<br/>
+                            기록과 기준이 남는 투명한 공정으로<br/>
+                            사후관리까지 이어지는 신뢰를 약속드립니다.
+                          </p>
+                          <p>
+                            사라지는 이름이 아니라,<br/>
+                            끝까지 남는 법인의 책임으로<br/>
+                            당신의 공간을 완성합니다.
                           </p>
                       </div>
                   </div>
