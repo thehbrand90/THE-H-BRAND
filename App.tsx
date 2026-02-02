@@ -16,6 +16,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import OpenPopup from './components/OpenPopup';
+import FloatingContact from './components/FloatingContact';
 
 const { HashRouter: Router, Routes, Route, useLocation } = ReactRouterDOM;
 
@@ -33,6 +34,7 @@ const App: React.FC = () => {
     <Router>
       <ScrollToTop />
       <OpenPopup />
+      <FloatingContact />
       <div className="flex flex-col min-h-screen font-montserrat text-brand-dark bg-brand-bg">
         <Navbar />
         <main className="flex-grow">
