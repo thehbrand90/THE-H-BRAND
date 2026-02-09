@@ -6,13 +6,16 @@ export interface NavItem {
 }
 
 export interface Review {
-  id: number;
-  author: string;
-  date: string;
+  id: string | number;   // Updated to support UUID string from Supabase
+  client_name: string;
+  created_at: string;
   title: string;
   content: string;
   rating: number;
-  image?: string;
+  image_urls?: string[]; // Array of image URLs
+  is_best?: boolean;
+  // Legacy support optional
+  image?: string; 
 }
 
 export interface Project {

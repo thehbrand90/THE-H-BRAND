@@ -157,9 +157,8 @@ const Hero: React.FC = () => {
                   <span 
                     className="text-[4rem] md:text-[7rem] lg:text-[9rem] font-black tracking-tighter text-white/10 transition-all duration-500"
                   >
-                    THE H BRAND
+                    THE H BRAND.
                   </span>
-                  <span className="text-xl md:text-3xl text-white/10 mx-6 font-light">✦</span>
                 </div>
              ))}
           </div>
@@ -168,8 +167,8 @@ const Hero: React.FC = () => {
 
       {/* Center Static Content - Anchor Point */}
       <div className="absolute inset-0 z-30 flex flex-col justify-center items-center text-center pointer-events-none">
-          <p className="text-white/90 text-sm md:text-lg tracking-[0.4em] uppercase font-light mb-8 animate-fade-in-up">
-            Premium Interior Design
+          <p className="text-white/90 text-sm md:text-lg tracking-[0.4em] uppercase font-light mb-8 animate-fade-in-up font-sans">
+            프리미엄 공간, 그 시작과 완성.
           </p>
           {/* Increased Center Line Size */}
           <div className="h-[2px] w-24 md:w-32 bg-white/70 mb-8 animate-fade-in-up delay-100"></div>

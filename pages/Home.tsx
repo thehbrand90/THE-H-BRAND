@@ -2,6 +2,7 @@ import React from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 import Hero from '../components/Hero';
 import { ArrowRight } from 'lucide-react';
+import { mockProjects } from './Portfolio';
 
 const { Link } = ReactRouterDOM;
 
@@ -58,25 +59,42 @@ const Home: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="group relative aspect-[4/5] overflow-hidden bg-brand-stone cursor-pointer">
+          {mockProjects.slice(0, 3).map((project) => (
+            <Link 
+              key={project.id}
+              to={`/portfolio/${project.id}`} 
+              className="group relative aspect-[4/5] overflow-hidden bg-brand-stone cursor-pointer block"
+            >
               <img 
-                src={`https://picsum.photos/800/1000?random=${i + 15}`} 
-                alt="Interior Project" 
+                src={project.image} 
+                alt={project.title} 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute bottom-0 left-0 p-8 md:p-10 translate-y-8 group-hover:translate-y-0 transition-transform duration-500 w-full">
                 <p className="text-brand-brown text-xs tracking-widest uppercase mb-3 font-bold">Residential</p>
                 <div className="flex justify-between items-center w-full">
-                  <h4 className="text-white text-2xl md:text-3xl font-medium">Project 0{i}</h4>
+                  <h4 className="text-white text-xl md:text-2xl font-medium leading-tight">{project.title}</h4>
                   <ArrowRight className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" size={20} />
                 </div>
+                <p className="text-white/70 text-xs mt-2 font-light">{project.py}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
+
+      {/* Architecture Divider Image */}
+      <div className="w-full">
+        <img 
+          src="https://i.postimg.cc/RVdPQ5Gz/Black-Greyscale-Architecture-Zoom-Virtual-Background.png" 
+          alt="Architecture Background" 
+          loading="lazy"
+          className="w-full h-auto block"
+        />
+      </div>
 
       {/* Services / Identity Section */}
       <section className="py-20 md:py-32 bg-brand-stone/20">

@@ -10,15 +10,16 @@ const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Form State
-  const [isEditing, setIsEditing] = useState<number | null>(null);
+  const [isEditing, setIsEditing] = useState<string | number | null>(null);
   const [form, setForm] = useState({
     title: '',
-    author: '',
+    client_name: '', // Changed from author
     content: '',
     rating: 5,
-    image: '',
+    images: [] as string[],
   });
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const AdminDashboard: React.FC = () => {
       const { data, error } = await supabase
         .from('reviews')
         .select('*')
-        .order('id', { ascending: false });
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
       setReviews(data || []);
@@ -62,39 +63,56 @@ const AdminDashboard: React.FC = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (form.images.length >= 3) {
+        alert("이미지는 최대 3장까지 등록 가능합니다.");
+        e.target.value = ''; // Reset input
+        return;
+      }
+      
       const reader = new FileReader();
       reader.onloadend = () => {
-        setForm(prev => ({ ...prev, image: reader.result as string }));
+        if (reader.result) {
+          setForm(prev => ({ ...prev, images: [...prev.images, reader.result as string] }));
+        }
       };
       reader.readAsDataURL(file);
     }
+    e.target.value = ''; // Reset input to allow re-selection
   };
 
-  const removeImage = () => {
-    setForm(prev => ({ ...prev, image: '' }));
+  const removeImage = (indexToRemove: number) => {
+    setForm(prev => ({ 
+      ...prev, 
+      images: prev.images.filter((_, index) => index !== indexToRemove) 
+    }));
   };
 
   const resetForm = () => {
-    setForm({ title: '', author: '', content: '', rating: 5, image: '' });
+    setForm({ title: '', client_name: '', content: '', rating: 5, images: [] });
     setIsEditing(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const currentDate = new Date().toISOString().split('T')[0];
-
+    if (isSubmitting) return; // Prevent double clicks
+    
+    setIsSubmitting(true);
+    
     try {
+      // Prepare payload with correct column names
+      const payload: any = {
+        title: form.title,
+        client_name: form.client_name,
+        content: form.content,
+        rating: Number(form.rating),
+        image_urls: form.images, // Array of strings
+      };
+
       if (isEditing) {
         // Update
         const { error } = await supabase
           .from('reviews')
-          .update({
-            title: form.title,
-            author: form.author,
-            content: form.content,
-            rating: Number(form.rating),
-            image: form.image,
-          })
+          .update(payload)
           .eq('id', isEditing);
 
         if (error) throw error;
@@ -102,14 +120,7 @@ const AdminDashboard: React.FC = () => {
         // Create
         const { error } = await supabase
           .from('reviews')
-          .insert([{
-            title: form.title,
-            author: form.author,
-            content: form.content,
-            rating: Number(form.rating),
-            image: form.image,
-            date: currentDate,
-          }]);
+          .insert([payload]);
 
         if (error) throw error;
       }
@@ -119,10 +130,12 @@ const AdminDashboard: React.FC = () => {
     } catch (error) {
       console.error('Error saving review:', error);
       alert('저장 중 오류가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string | number) => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
 
     try {
@@ -141,15 +154,24 @@ const AdminDashboard: React.FC = () => {
 
   const startEdit = (review: Review) => {
     setIsEditing(review.id);
+    // Combine legacy image and new image_urls for editing state
+    const existingImages = review.image_urls || (review.image ? [review.image] : []);
+    
     setForm({
       title: review.title,
-      author: review.author,
+      client_name: review.client_name,
       content: review.content,
       rating: review.rating,
-      image: review.image || '',
+      images: existingImages,
     });
     // Scroll to form
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Helper to format date
+  const formatDate = (dateString: string) => {
+    if (!dateString) return '';
+    return dateString.split('T')[0];
   };
 
   return (
@@ -177,11 +199,11 @@ const AdminDashboard: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-2">작성자 (Author)</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2">작성자 (Client Name)</label>
                 <input 
                   type="text" 
-                  name="author"
-                  value={form.author} 
+                  name="client_name"
+                  value={form.client_name} 
                   onChange={handleInputChange}
                   required
                   className="w-full bg-gray-50 border border-gray-200 p-3 focus:outline-none focus:border-black transition-colors"
@@ -229,40 +251,56 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase mb-2">사진 첨부 (Photo)</label>
-              <div className="flex items-center space-x-4">
-                <label className="cursor-pointer bg-white border border-gray-300 px-4 py-2 hover:bg-gray-50 transition-colors flex items-center text-sm text-gray-600">
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-2">
+                사진 첨부 (Photos) - Max 3
+              </label>
+              <div className="flex flex-wrap items-center gap-4">
+                {/* Upload Button */}
+                <label 
+                  className={`cursor-pointer bg-white border border-gray-300 px-4 py-3 hover:bg-gray-50 transition-colors flex items-center text-sm text-gray-600 ${form.images.length >= 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
                   <ImageIcon size={16} className="mr-2" />
-                  이미지 선택...
+                  {form.images.length >= 3 ? '최대 개수 도달' : '이미지 추가...'}
                   <input 
                     type="file" 
                     accept="image/*"
                     onChange={handleImageChange}
                     className="hidden"
+                    disabled={form.images.length >= 3}
                   />
                 </label>
-                {form.image && (
-                  <div className="relative group">
-                    <img src={form.image} alt="Preview" className="h-16 w-16 object-cover border border-gray-200" />
+
+                {/* Thumbnails */}
+                {form.images.map((img, idx) => (
+                  <div key={idx} className="relative group w-20 h-20">
+                    <img 
+                      src={img} 
+                      alt={`Preview ${idx + 1}`} 
+                      className="w-full h-full object-cover border border-gray-200 rounded-sm" 
+                    />
                     <button 
                       type="button" 
-                      onClick={removeImage}
-                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-sm hover:bg-red-600"
+                      onClick={() => removeImage(idx)}
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-sm hover:bg-red-600 transition-colors z-10"
                     >
                       <XIcon size={12} />
                     </button>
                   </div>
-                )}
+                ))}
               </div>
+              <p className="text-[10px] text-gray-400 mt-2">
+                * 최대 3장까지 등록 가능합니다. (현재: {form.images.length}/3)
+              </p>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 pt-4">
               <button 
                 type="submit" 
-                className="bg-[#222625] text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black transition-colors flex items-center"
+                disabled={isSubmitting}
+                className={`bg-[#222625] text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black transition-colors flex items-center ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <Check size={16} className="mr-2" />
-                {isEditing ? 'Update Review' : 'Create Review'}
+                {isSubmitting ? 'Saving...' : (isEditing ? 'Update Review' : 'Create Review')}
               </button>
               {isEditing && (
                 <button 
@@ -291,9 +329,9 @@ const AdminDashboard: React.FC = () => {
                <table className="w-full text-left border-collapse">
                  <thead>
                    <tr className="bg-gray-50 text-xs text-gray-500 font-bold uppercase tracking-wider">
-                     <th className="p-4 border-b border-gray-200 w-16 text-center">ID</th>
+                     <th className="p-4 border-b border-gray-200 w-24 text-center">ID</th>
                      <th className="p-4 border-b border-gray-200">Title</th>
-                     <th className="p-4 border-b border-gray-200 w-32">Author</th>
+                     <th className="p-4 border-b border-gray-200 w-32">Client</th>
                      <th className="p-4 border-b border-gray-200 w-32">Date</th>
                      <th className="p-4 border-b border-gray-200 w-24">Rating</th>
                      <th className="p-4 border-b border-gray-200 w-32 text-center">Actions</th>
@@ -305,38 +343,49 @@ const AdminDashboard: React.FC = () => {
                        <td colSpan={6} className="p-8 text-center text-gray-400">No reviews found.</td>
                      </tr>
                    ) : (
-                     reviews.map((review) => (
-                       <tr key={review.id} className="hover:bg-gray-50 transition-colors">
-                         <td className="p-4 border-b border-gray-100 text-center text-gray-400">{review.id}</td>
-                         <td className="p-4 border-b border-gray-100 font-medium">
-                           <div className="flex items-center">
-                             {review.title}
-                             {review.image && <ImageIcon size={14} className="ml-2 text-gray-400" />}
-                           </div>
-                         </td>
-                         <td className="p-4 border-b border-gray-100 text-gray-600">{review.author}</td>
-                         <td className="p-4 border-b border-gray-100 text-gray-400">{review.date}</td>
-                         <td className="p-4 border-b border-gray-100 text-yellow-500">{'★'.repeat(review.rating)}</td>
-                         <td className="p-4 border-b border-gray-100 text-center">
-                           <div className="flex items-center justify-center space-x-2">
-                             <button 
-                               onClick={() => startEdit(review)}
-                               className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                               title="Edit"
-                             >
-                               <Edit size={16} />
-                             </button>
-                             <button 
-                               onClick={() => handleDelete(review.id)}
-                               className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
-                               title="Delete"
-                             >
-                               <Trash2 size={16} />
-                             </button>
-                           </div>
-                         </td>
-                       </tr>
-                     ))
+                     reviews.map((review) => {
+                       const hasImages = (review.image_urls && review.image_urls.length > 0) || review.image;
+                       // Handle ID display safely if it's a long UUID
+                       const displayId = typeof review.id === 'string' ? review.id.substring(0, 6) + '...' : review.id;
+                       
+                       return (
+                         <tr key={review.id} className="hover:bg-gray-50 transition-colors">
+                           <td className="p-4 border-b border-gray-100 text-center text-gray-400 font-mono text-xs" title={String(review.id)}>
+                             {displayId}
+                           </td>
+                           <td className="p-4 border-b border-gray-100 font-medium">
+                             <div className="flex items-center">
+                               {review.title}
+                               {hasImages && <ImageIcon size={14} className="ml-2 text-gray-400" />}
+                               {review.image_urls && review.image_urls.length > 1 && (
+                                  <span className="text-[10px] text-gray-400 ml-1 bg-gray-100 px-1 rounded">+{review.image_urls.length - 1}</span>
+                               )}
+                             </div>
+                           </td>
+                           <td className="p-4 border-b border-gray-100 text-gray-600">{review.client_name}</td>
+                           <td className="p-4 border-b border-gray-100 text-gray-400">{formatDate(review.created_at)}</td>
+                           <td className="p-4 border-b border-gray-100 text-yellow-500">{'★'.repeat(review.rating)}</td>
+                           <td className="p-4 border-b border-gray-100 text-center">
+                             <div className="flex items-center justify-center space-x-2">
+                               <button 
+                                 onClick={() => startEdit(review)}
+                                 className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                                 title="Edit"
+                               >
+                                 <Edit size={16} />
+                               </button>
+                               <button 
+                                 onClick={() => handleDelete(review.id)}
+                                 className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+                                 title="Delete"
+                               >
+                                 <Trash2 size={16} />
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       );
+                     })
                    )}
                  </tbody>
                </table>

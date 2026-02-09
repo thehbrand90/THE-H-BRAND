@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className="bg-brand-stone pt-20 pb-10 px-6 md:px-20 border-t border-brand-dark/5">
       <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
-          <h2 className="text-2xl font-bold tracking-widest mb-4 text-brand-dark">THE H BRAND</h2>
+          <h2 className="text-2xl font-bold tracking-widest mb-4 text-brand-dark">(주) THE H BRAND</h2>
           <p className="text-sm text-gray-600 leading-relaxed max-w-md">
             THE H Brand는 공간을 설계하고 완성하는 법인입니다.<br/>
             고객은 디에이치를 기억하고, 계약은 디에이치브랜드가 책임집니다.
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
 
       <div className="mt-20 pt-8 border-t border-brand-dark/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
         <div className="flex flex-col md:flex-row items-center md:space-x-6">
-            <p>&copy; {new Date().getFullYear()} THE H BRAND. All Rights Reserved.</p>
+            <p>&copy; {new Date().getFullYear()} (주) THE H BRAND. All Rights Reserved.</p>
             <div className="mt-4 md:mt-0 flex space-x-6">
                 <Link to="/terms" className="hover:text-brand-dark transition-colors underline">
                     이용약관 (Terms of Use)

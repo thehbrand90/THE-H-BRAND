@@ -84,7 +84,7 @@ const OpenPopup: React.FC = () => {
             {/* Message */}
             <div className="mb-10 space-y-3">
               <p className="text-sm md:text-base text-gray-600 font-light leading-relaxed font-sans">
-                저희 더 에이치 브랜드가<br/>
+                저희 디에이치브랜드가<br/>
                 공식 웹사이트를 오픈하였습니다.
               </p>
               <p className="text-sm md:text-base text-gray-600 font-light leading-relaxed font-sans">

@@ -190,6 +190,7 @@ const PortfolioDetail: React.FC = () => {
                           alt={`Interior View ${index + 1}`} 
                           className="w-full h-auto object-contain block"
                           loading="lazy"
+                          decoding="async"
                       />
                   </div>
               ))}
@@ -219,6 +220,7 @@ const PortfolioDetail: React.FC = () => {
                                 src={img} 
                                 alt={`Thumbnail ${index + 1}`} 
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                             {/* Active Indicator Overlay */}
                             {activeIndex === index && (

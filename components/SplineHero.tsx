@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const SplineHero: React.FC = () => {
+  useEffect(() => {
+    // Dynamically load the Spline viewer script only when this component is mounted
+    // This prevents the heavy script from blocking the initial load of other pages
+    const scriptUrl = "https://unpkg.com/@splinetool/viewer@1.12.32/build/spline-viewer.js";
+    
+    // Check if script is already present
+    if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = scriptUrl;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <div className="w-full h-[85vh] relative overflow-hidden bg-[#e0e0e0]">
       {/* 
-        We use the splinetool script loaded in index.html.
+        We use the splinetool script loaded dynamically.
         The wrapper ensures it takes up the correct space.
       */}
       {React.createElement('spline-viewer' as any, {
