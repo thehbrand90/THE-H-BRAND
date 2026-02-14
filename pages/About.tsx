@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Layout, TrendingUp, ShieldCheck, Palette } from 'lucide-react';
+import LazyImage from '../components/LazyImage';
 
 // Reusable Fade-in Component for scroll animations
 const FadeIn: React.FC<{ children: React.ReactNode; delay?: string }> = ({ children, delay = '0ms' }) => {
@@ -167,12 +168,12 @@ const About: React.FC = () => {
           {/* Section 1: Our Story & Brand Structure (Image/White Split) */}
           <section className="w-full flex flex-col md:flex-row min-h-[700px]">
              {/* Left: Large Vertical Image */}
-             <div className="w-full md:w-1/2 h-[500px] md:h-auto relative overflow-hidden">
-                <img 
+             <div className="w-full md:w-1/2 h-[500px] md:h-auto relative overflow-hidden bg-gray-200">
+                <LazyImage 
                   src="https://i.postimg.cc/JzNvfvqp/6.jpg" 
                   alt="Interior Hallway" 
-                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+                  containerClassName="w-full h-full"
                 />
              </div>
 
@@ -226,14 +227,14 @@ const About: React.FC = () => {
                   
                   {/* Image Column */}
                   {/* Mobile: Always Top (order-1). Desktop: Alternates (order-1 or order-2) */}
-                  <div className={`w-full md:w-1/2 h-[400px] md:h-auto relative overflow-hidden order-1 ${isTextLeft ? 'md:order-2' : 'md:order-1'}`}>
-                    <img 
+                  <div className={`w-full md:w-1/2 h-[400px] md:h-auto relative overflow-hidden order-1 bg-[#5d5646] ${isTextLeft ? 'md:order-2' : 'md:order-1'}`}>
+                    <LazyImage 
                       src={section.image} 
                       alt={section.title} 
-                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2000ms] hover:scale-105"
+                      containerClassName="w-full h-full"
                     />
-                    <div className="absolute inset-0 bg-black/10"></div>
+                    <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
                   </div>
 
                   {/* Text Column (Deep Taupe Background #524c3e) */}
@@ -256,12 +257,12 @@ const About: React.FC = () => {
 
                           {/* Floating Image (Embedded in text flow for editorial feel) */}
                           {section.floatingImage && (
-                            <div className="hidden md:block float-right ml-8 mb-6 w-40 aspect-[3/4] shadow-2xl border border-white/10 relative z-20 overflow-hidden group">
-                               <img 
+                            <div className="hidden md:block float-right ml-8 mb-6 w-40 aspect-[3/4] shadow-2xl border border-white/10 relative z-20 overflow-hidden group bg-gray-700">
+                               <LazyImage 
                                  src={section.floatingImage}
                                  alt="Detail"
-                                 loading="lazy"
                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                 containerClassName="w-full h-full"
                                />
                             </div>
                           )}
@@ -335,11 +336,12 @@ const About: React.FC = () => {
               {/* Image Content - Natural Aspect Ratio (No cropping) */}
               <div className="w-full md:w-1/2 order-1 md:order-2 flex justify-center md:justify-end">
                 <FadeIn delay="200ms">
-                  <div className="relative w-full">
-                    <img 
+                  <div className="relative w-full bg-gray-50">
+                    <LazyImage 
                       src="https://i.postimg.cc/FHDPjLVj/Kakao-Talk-20260112-175428559-02.jpg" 
                       alt="About Us" 
                       className="w-full h-auto object-contain grayscale hover:grayscale-0 transition-all duration-1000 shadow-xl"
+                      containerClassName="w-full h-auto"
                     />
                   </div>
                 </FadeIn>
@@ -356,10 +358,11 @@ const About: React.FC = () => {
               <div className="w-full md:w-1/2 flex justify-center md:justify-start">
                 <FadeIn>
                   <div className="relative w-full">
-                    <img 
+                    <LazyImage 
                       src="https://i.postimg.cc/gjWq9zKk/teaam.png" 
                       alt="Premium Standard" 
                       className="w-full h-auto object-contain shadow-2xl"
+                      containerClassName="w-full h-auto"
                     />
                     {/* Decorative Element */}
                     <div className="absolute -top-10 -left-10 text-white/5 font-serif text-9xl font-bold select-none pointer-events-none z-0">
@@ -432,11 +435,11 @@ const About: React.FC = () => {
                {/* Left: Minimalist Image */}
                <div className="w-full lg:w-[40%]">
                  <div className="sticky top-32 overflow-hidden bg-gray-200">
-                   <img 
+                   <LazyImage 
                       src="https://i.postimg.cc/6qQ9HRvx/20.jpg" 
                       alt="Minimalist Interior" 
-                      loading="lazy"
-                      className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-[2000ms]" 
+                      className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-[2000ms]"
+                      containerClassName="w-full h-full"
                    />
                  </div>
                </div>
@@ -551,14 +554,12 @@ const About: React.FC = () => {
              <div className="w-full md:w-1/2 bg-gray-50 flex items-center justify-center p-8 md:p-0 relative order-1 md:order-2 overflow-hidden">
                 <FadeIn delay="200ms">
                    <div className="relative w-full h-full flex items-center justify-center">
-                      <img 
-                        src="https://i.postimg.cc/Gt4rCR3S/THE-H.png" 
+                      <LazyImage 
+                        src="https://i.postimg.cc/NjKFyd2J/THE-H.png" 
                         alt="The H Team" 
                         className="w-full h-auto object-contain max-h-[80vh] grayscale transition-all duration-1000 ease-in-out hover:grayscale-0"
+                        containerClassName="w-full h-full flex items-center justify-center"
                       />
-                      
-                      {/* Optional Overlay if needed, but keeping image clean as requested */}
-                      {/* <div className="absolute inset-0 bg-brand-brown/10 mix-blend-multiply pointer-events-none"></div> */}
                    </div>
                 </FadeIn>
              </div>

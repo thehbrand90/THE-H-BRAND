@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { mockProjects, PortfolioItem } from './Portfolio';
+import LazyImage from '../components/LazyImage';
 
 const PortfolioDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -183,14 +184,13 @@ const PortfolioDetail: React.FC = () => {
                       key={index} 
                       ref={(el) => { imageRefs.current[index] = el; }}
                       data-index={index}
-                      className="w-full"
+                      className="w-full flex items-center justify-center min-h-[300px]"
                   >
-                      <img 
+                      <LazyImage
                           src={img} 
                           alt={`Interior View ${index + 1}`} 
                           className="w-full h-auto object-contain block"
-                          loading="lazy"
-                          decoding="async"
+                          containerClassName="w-full h-full bg-gray-50"
                       />
                   </div>
               ))}
@@ -210,21 +210,21 @@ const PortfolioDetail: React.FC = () => {
                             key={index}
                             ref={(el) => { thumbnailRefs.current[index] = el; }}
                             onClick={() => scrollToImage(index)}
-                            className={`relative w-full aspect-[3/4] overflow-hidden transition-all duration-300 group ${
+                            className={`relative w-full aspect-[3/4] overflow-hidden bg-gray-100 transition-all duration-300 group ${
                                 activeIndex === index 
                                 ? 'opacity-100 ring-1 ring-brand-brown shadow-md scale-105' 
                                 : 'opacity-40 hover:opacity-80 grayscale hover:grayscale-0'
                             }`}
                         >
-                            <img 
+                            <LazyImage 
                                 src={img} 
                                 alt={`Thumbnail ${index + 1}`} 
                                 className="w-full h-full object-cover"
-                                loading="lazy"
+                                containerClassName="w-full h-full"
                             />
                             {/* Active Indicator Overlay */}
                             {activeIndex === index && (
-                                <div className="absolute inset-0 border-2 border-white/20 pointer-events-none"></div>
+                                <div className="absolute inset-0 border-2 border-white/20 pointer-events-none z-30"></div>
                             )}
                         </button>
                     ))}

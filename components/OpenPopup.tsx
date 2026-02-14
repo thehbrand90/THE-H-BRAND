@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import * as ReactRouterDOM from 'react-router-dom';
+import LazyImage from './LazyImage';
 
 const { Link } = ReactRouterDOM;
 
@@ -51,10 +52,11 @@ const OpenPopup: React.FC = () => {
         
         {/* Left Half: Image */}
         <div className="w-full md:w-1/2 h-[300px] md:h-[550px] relative bg-gray-100">
-          <img 
+          <LazyImage 
             src="https://i.postimg.cc/wBzkG4Vk/open.png" 
             alt="Grand Opening" 
             className="absolute inset-0 w-full h-full object-cover"
+            containerClassName="absolute inset-0 w-full h-full"
           />
         </div>
 
@@ -64,7 +66,7 @@ const OpenPopup: React.FC = () => {
           {/* Close Icon (Top Right) */}
           <button 
             onClick={closePopup}
-            className="absolute top-5 right-5 text-gray-300 hover:text-brand-dark transition-colors p-2"
+            className="absolute top-5 right-5 text-gray-300 hover:text-brand-dark transition-colors p-2 z-10"
           >
             <X size={24} strokeWidth={1} />
           </button>

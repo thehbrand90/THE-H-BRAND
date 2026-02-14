@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, MapPin, Phone, Clock } from 'lucide-react';
+import LazyImage from '../components/LazyImage';
 
 const Contact: React.FC = () => {
   return (
@@ -10,19 +11,20 @@ const Contact: React.FC = () => {
         
         {/* Left: Heavy Building Image */}
         <div className="relative w-full lg:w-[45%] xl:w-[50%] min-h-[50vh] lg:min-h-auto bg-[#2c2c2c]">
-          <img 
+          <LazyImage 
             src="https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop" 
             alt="Office Building" 
             className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 contrast-125"
+            containerClassName="w-full h-full"
           />
-          <div className="absolute inset-0 bg-brand-brown/10 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-brand-brown/10 mix-blend-multiply z-10 pointer-events-none"></div>
           
-          <div className="absolute top-28 left-8 md:left-12 z-10">
+          <div className="absolute top-28 left-8 md:left-12 z-20">
             <h2 className="text-white text-xs font-bold tracking-[0.2em] uppercase mb-1 opacity-80">THE H BRAND</h2>
             <p className="text-white text-4xl font-bold tracking-tighter">OFFICE</p>
           </div>
 
-          <div className="absolute bottom-8 right-8 z-10 text-right">
+          <div className="absolute bottom-8 right-8 z-20 text-right">
              <p className="text-white/60 text-[10px] font-mono tracking-widest">GWANGJU / JEONNAM</p>
           </div>
         </div>
@@ -84,19 +86,20 @@ const Contact: React.FC = () => {
                    href="https://naver.me/GziclEJu" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   className="block w-full h-48 relative group overflow-hidden bg-gray-100 grayscale hover:grayscale-0 transition-all duration-500 mb-2"
+                   className="block w-full h-48 relative group overflow-hidden bg-gray-200"
                 >
-                   <img 
+                   <LazyImage 
                      src="https://i.postimg.cc/XqpY4cCR/image.png" 
                      alt="Location Map" 
-                     className="w-full h-full object-cover"
+                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                     containerClassName="w-full h-full"
                    />
-                   <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
-                   <div className="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] font-bold text-gray-800 opacity-0 group-hover:opacity-100 transition-opacity">
+                   <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10"></div>
+                   <div className="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-[10px] font-bold text-gray-800 opacity-0 group-hover:opacity-100 transition-opacity z-20">
                       VIEW MAP
                    </div>
                 </a>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 mt-2">
                   <a 
                     href="https://naver.me/GziclEJu"
                     target="_blank" 
@@ -157,14 +160,15 @@ const Contact: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-brand-dark">A/S REQUEST</h2>
           <div className="flex flex-col lg:flex-row shadow-2xl bg-white">
             
-              <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-[800px]">
-                <img 
+              <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-[800px] bg-gray-800">
+                <LazyImage 
                     src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2531&auto=format&fit=crop" 
                     alt="Interior Detail" 
                     className="absolute inset-0 w-full h-full object-cover"
+                    containerClassName="w-full h-full"
                 />
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="absolute bottom-0 left-0 p-10 text-white">
+                <div className="absolute inset-0 bg-black/20 z-10 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 p-10 text-white z-20">
                     <p className="text-xs font-bold tracking-widest uppercase mb-3 opacity-90 text-brand-stone">Customer Service</p>
                     <h3 className="text-2xl md:text-3xl font-light leading-tight mb-4">
                         책임지는 시공,<br/>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { Review } from '../types';
 import { ChevronDown, ChevronUp, Image as ImageIcon, ArrowRight } from 'lucide-react';
+import LazyImage from '../components/LazyImage';
 
 const Reviews: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -138,24 +139,24 @@ const Reviews: React.FC = () => {
                         <div className="mt-8">
                            {/* Single Image Layout */}
                            {displayImages.length === 1 ? (
-                             <div className="overflow-hidden rounded-sm shadow-sm max-w-2xl">
-                               <img 
+                             <div className="overflow-hidden rounded-sm shadow-sm max-w-2xl bg-gray-200">
+                               <LazyImage 
                                  src={displayImages[0]} 
                                  alt="Review attachment" 
-                                 loading="lazy"
                                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700 ease-out"
+                                 containerClassName="w-full h-auto"
                                />
                              </div>
                            ) : (
                              /* Multiple Images Grid Layout (2 or 3) */
                              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                {displayImages.slice(0, 3).map((img, idx) => (
-                                 <div key={idx} className="aspect-[4/3] overflow-hidden rounded-sm shadow-sm group">
-                                    <img 
+                                 <div key={idx} className="aspect-[4/3] overflow-hidden rounded-sm shadow-sm group bg-gray-200">
+                                    <LazyImage 
                                       src={img} 
                                       alt={`Review attachment ${idx + 1}`} 
-                                      loading="lazy"
                                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                      containerClassName="w-full h-full"
                                     />
                                  </div>
                                ))}
@@ -180,19 +181,19 @@ const Reviews: React.FC = () => {
       )}
 
       {/* Write Review Link Box with Image Background */}
-      <div className="mt-24 relative w-full h-[400px] flex flex-col items-center justify-center text-center overflow-hidden group rounded-sm shadow-xl">
+      <div className="mt-24 relative w-full h-[400px] flex flex-col items-center justify-center text-center overflow-hidden group rounded-sm shadow-xl bg-gray-800">
         {/* Background Image */}
-        <img 
+        <LazyImage 
           src="https://i.postimg.cc/c1D3Wvfb/review.jpg" 
           alt="Write Review Background" 
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+          containerClassName="absolute inset-0 w-full h-full"
         />
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-500"></div>
+        <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-500 z-10"></div>
 
         {/* Content */}
-        <div className="relative z-10 p-8">
+        <div className="relative z-20 p-8">
           <h3 className="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">Write a Review</h3>
           <p className="text-base md:text-lg text-gray-200 mb-10 font-light tracking-wide">
             THE H BRAND와의 경험을 공유해주세요.

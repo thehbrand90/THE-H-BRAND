@@ -3,6 +3,7 @@ import * as ReactRouterDOM from 'react-router-dom';
 import Hero from '../components/Hero';
 import { ArrowRight } from 'lucide-react';
 import { mockProjects } from './Portfolio';
+import LazyImage from '../components/LazyImage';
 
 const { Link } = ReactRouterDOM;
 
@@ -63,17 +64,16 @@ const Home: React.FC = () => {
             <Link 
               key={project.id}
               to={`/portfolio/${project.id}`} 
-              className="group relative aspect-[4/5] overflow-hidden bg-brand-stone cursor-pointer block"
+              className="group relative aspect-[4/5] block bg-brand-stone cursor-pointer"
             >
-              <img 
+              <LazyImage 
                 src={project.image} 
                 alt={project.title} 
-                loading="lazy"
-                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                containerClassName="w-full h-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute bottom-0 left-0 p-8 md:p-10 translate-y-8 group-hover:translate-y-0 transition-transform duration-500 w-full">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+              <div className="absolute bottom-0 left-0 p-8 md:p-10 translate-y-8 group-hover:translate-y-0 transition-transform duration-500 w-full z-20">
                 <p className="text-brand-brown text-xs tracking-widest uppercase mb-3 font-bold">Residential</p>
                 <div className="flex justify-between items-center w-full">
                   <h4 className="text-white text-xl md:text-2xl font-medium leading-tight">{project.title}</h4>
@@ -87,12 +87,12 @@ const Home: React.FC = () => {
       </section>
 
       {/* Architecture Divider Image */}
-      <div className="w-full">
-        <img 
+      <div className="w-full bg-brand-stone/20 min-h-[200px]">
+        <LazyImage 
           src="https://i.postimg.cc/RVdPQ5Gz/Black-Greyscale-Architecture-Zoom-Virtual-Background.png" 
           alt="Architecture Background" 
-          loading="lazy"
           className="w-full h-auto block"
+          containerClassName="w-full h-full"
         />
       </div>
 

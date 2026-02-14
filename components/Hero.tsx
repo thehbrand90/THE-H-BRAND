@@ -126,16 +126,24 @@ const Hero: React.FC = () => {
       {slides.map((slide, index) => (
         <div 
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out bg-gray-900 ${
             index === currentSlide ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
           }`}
         >
-          {/* Darker overlay for text contrast */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${
+          {/* Changed from background-image div to img tag for better performance control */}
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            className={`absolute inset-0 w-full h-full object-cover ${
               index === currentSlide ? 'animate-subtle-zoom' : ''
             }`}
-            style={{ backgroundImage: `url('${slide.image}')` }}
+            // Eager load the first image for LCP, lazy load the rest
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            onError={(e) => {
+              // Fallback if image fails - keep dark background
+              e.currentTarget.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
