@@ -7,33 +7,38 @@ const { Link } = ReactRouterDOM;
 const slides = [
   {
     id: 1,
-    image: 'https://i.postimg.cc/JzQZJPKV/main1.jpg',
-    alt: "Dark Modern Interior"
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p1.webp',
+    alt: "Modern Interior Design 1"
   },
   {
     id: 2,
-    image: 'https://i.postimg.cc/L6cNvCzX/main2.jpg',
-    alt: "Bright Minimalist Living"
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p2.webp',
+    alt: "Modern Interior Design 2"
   },
   {
     id: 3,
-    image: 'https://i.postimg.cc/RhB5WCrB/caroline-badran-9Bh5YYZMGv0-unsplash.jpg',
-    alt: "Modern Beige Interior"
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p3.webp',
+    alt: "Modern Interior Design 3"
   },
   {
     id: 4,
-    image: 'https://i.postimg.cc/FsT84VKr/darwin-interior-w-HAV8p9dd6Q-unsplash.jpg',
-    alt: "Luxurious Living Space"
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p4.webp',
+    alt: "Modern Interior Design 4"
   },
   {
     id: 5,
-    image: 'https://i.postimg.cc/13gCZxTc/istockphoto-1394304269-612x612.jpg',
-    alt: "Minimalist Detail"
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p5.webp',
+    alt: "Modern Interior Design 5"
   },
   {
     id: 6,
-    image: 'https://i.postimg.cc/4yL5rwQ8/istockphoto-1477604800-612x612.jpg',
-    alt: "Architectural Elements"
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p6.webp',
+    alt: "Modern Interior Design 6"
+  },
+  {
+    id: 7,
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p7.webp',
+    alt: "Modern Interior Design 7"
   }
 ];
 

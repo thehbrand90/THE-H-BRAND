@@ -305,8 +305,11 @@ const About: React.FC = () => {
                   </span>
                   {/* Reduced font size for headline as requested */}
                   <h2 className="text-2xl md:text-3xl lg:text-3xl font-bold text-[#1a1a1a] mb-12 leading-[1.4] tracking-tight">
-                    디자인은 누구나, 완성은 디에이치,<br />
-                    책임은 (주) 디에이치브랜드.
+                    디자인은 누구나, 완성은 디에이치.<br />
+                    <span className="text-lg md:text-xl font-normal text-gray-600 mt-4 block">
+                      실내건축공사업 면허를 보유한 전문 시공 법인으로서<br />
+                      설계부터 준공까지 법적 기준에 부합하는 정밀한 시공을 약속합니다.
+                    </span>
                   </h2>
                   
                   <div className="space-y-10 text-[#4a4a4a] font-light text-base md:text-lg leading-[1.8]">
@@ -315,8 +318,8 @@ const About: React.FC = () => {
                       프로젝트 규모가 커질수록 한계가 생깁니다.
                     </p>
                     <p>
-                      (주)디에이치브랜드는 광주·전남을 기반으로<br />
-                      계약부터 공정관리, 준공, A/S까지<br />
+                      (주)디에이치브랜드 <span className="text-sm text-brand-brown font-medium border-b border-brand-brown/30 ml-1">실내건축공사업 면허번호: 광주광산-26-나-03</span>는<br />
+                      광주·전남을 기반으로 계약부터 공정관리, 준공, A/S까지<br />
                       법인의 기준으로 책임지는 Design & Build 시공사입니다.
                     </p>
                     <p>

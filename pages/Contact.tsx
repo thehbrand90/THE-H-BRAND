@@ -45,6 +45,7 @@ const Contact: React.FC = () => {
                   주식회사 디에이치브랜드
                 </p>
                 <p className="text-xs text-gray-400 mt-2 font-light tracking-wide">THE H Brand co., Ltd</p>
+                <p className="text-xs text-gray-400 mt-1 font-light tracking-wide">LICENSE: 광주광산-26-나-03 (실내건축공사업)</p>
               </div>
 
               {/* Inquiry Info */}

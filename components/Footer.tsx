@@ -19,6 +19,7 @@ const Footer: React.FC = () => {
           <h3 className="text-xs font-bold uppercase tracking-widest text-brand-brown mb-4">Contact</h3>
           <p className="text-sm text-gray-600 mb-2">광주광역시 광산구 풍영로 206, 3층</p>
           <p className="text-sm text-gray-600 mb-2">010-5430-0452</p>
+          <p className="text-sm text-gray-600 mb-2">실내건축공사업 면허번호: 광주광산-26-나-03</p>
           <p className="text-sm text-gray-600">thehbrand@naver.com</p>
         </div>
 
