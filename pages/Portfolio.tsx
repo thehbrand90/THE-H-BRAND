@@ -116,7 +116,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 성덕마을 대방3차',
     year: '2025',
     py: '50PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/wh001.webp',
+    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/pb2.png',
     category: '50PY',
     description: "하이엔드 인테리어의 정석적인 모습을 보여주는 수완 대방3차 현장입니다. 완벽하게 톤이 정리된 화이트 뉴트럴 베이스는 그 자체로 훌륭한 캔버스가 되어줍니다. 여기에 고객님의 남다른 센스가 돋보이는 가구와 그림 배치가 더해져, 시간이 지나도 질리지 않는 트렌디함을 완성했습니다. 비움으로써 오히려 풍성해지는 미니멀 럭셔리의 가치를 이 공간에 담았습니다.",
     meta: [
@@ -383,7 +383,7 @@ export const mockProjects: PortfolioItem[] = [
   },
   {
     id: 6,
-    title: '운림동 무등파크',
+    title: '운림동 무등파크2차',
     year: '2024',
     py: '49PY',
     image: 'https://i.postimg.cc/SsBmT6T5/unlimpofile.png',
@@ -551,7 +551,7 @@ export const mockProjects: PortfolioItem[] = [
   },
   {
     id: 9,
-    title: '일곡동 현대',
+    title: '일곡동 현대3차',
     year: '2024',
     py: '32PY',
     image: 'https://i.postimg.cc/13Qqsc89/omognun-i.png',
@@ -863,7 +863,7 @@ export const mockProjects: PortfolioItem[] = [
   },
   {
     id: 3,
-    title: '운암동 벽산블루시안2차',
+    title: '운암동 블루시안2차',
     year: '2023',
     py: '33PY',
     image: 'https://i.postimg.cc/76858BQd/image-Dp3.png',
