@@ -193,7 +193,6 @@ const Privacy: React.FC = () => {
                         <div className="border border-gray-200 p-6">
                             <ul className="space-y-2 text-sm">
                                 <li><strong>성명:</strong> 정고운</li>
-                                <li><strong>직책:</strong> 실무이사</li>
                                 <li><strong>연락처:</strong> 010-5430-0452</li>
                                 <li><strong>이메일:</strong> thehbrand@naver.com</li>
                                 <li><strong>주소:</strong> 광주광역시 광산구 풍영로 206, 3층</li>
