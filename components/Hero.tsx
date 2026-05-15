@@ -144,6 +144,8 @@ const Hero: React.FC = () => {
             }`}
             // Eager load the first image for LCP, lazy load the rest
             loading={index === 0 ? "eager" : "lazy"}
+            // @ts-ignore
+            fetchPriority={index === 0 ? "high" : "auto"}
             decoding="async"
             onError={(e) => {
               // Fallback if image fails - keep dark background

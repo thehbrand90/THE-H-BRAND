@@ -59,8 +59,8 @@ const Home: React.FC = () => {
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mockProjects.slice(0, 3).map((project) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {mockProjects.slice(0, 4).map((project, index) => (
             <Link 
               key={project.id}
               to={`/portfolio/${project.id}`} 
@@ -71,6 +71,7 @@ const Home: React.FC = () => {
                 alt={project.title} 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 containerClassName="w-full h-full"
+                priority={index < 4}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
               <div className="absolute bottom-0 left-0 p-8 md:p-10 translate-y-8 group-hover:translate-y-0 transition-transform duration-500 w-full z-20">

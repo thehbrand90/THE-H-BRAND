@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { Review } from '../types';
-import { ChevronDown, ChevronUp, Image as ImageIcon, ArrowRight } from 'lucide-react';
+import { ChevronDown, ChevronUp, Image as ImageIcon, ArrowRight, ExternalLink } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 
 const Reviews: React.FC = () => {
@@ -56,6 +56,40 @@ const Reviews: React.FC = () => {
       <div className="mb-12 text-center">
         <h1 className="text-4xl font-bold mb-4 text-brand-dark">REVIEWS</h1>
         <p className="text-gray-500">고객님들의 소중한 후기입니다.</p>
+      </div>
+
+      {/* Review Site Link Banner */}
+      <div className="mb-20">
+        <a 
+          href="https://thehbrand-reviews.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative flex flex-col md:flex-row items-center justify-between bg-brand-dark overflow-hidden rounded-sm p-10 md:p-14 transition-all duration-500 hover:shadow-2xl"
+        >
+          <div className="relative z-10 w-full md:w-3/4">
+            <span className="text-[10px] text-white/50 font-bold uppercase tracking-[0.3em] mb-4 block">Official Review Archive</span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 tracking-tight leading-tight">
+              디에이치브랜드 공식 리뷰 사이트<br className="hidden md:block"/>
+              생생한 실제 후기를 만나보세요
+            </h2>
+            <p className="text-white/60 text-sm md:text-base font-light mb-10 max-w-xl leading-relaxed">
+              더 깊이 있는 공간 이야기와 상세 사진, 고객님들의 진솔한 평가는 리뉴얼된 공식 리뷰 사이트에서 더욱 편리하게 확인하실 수 있습니다.
+            </p>
+            <div className="inline-flex items-center text-white text-xs font-bold uppercase tracking-[0.2em] border-b border-white/30 pb-2 group-hover:border-white transition-all">
+              공식 리뷰 사이트 방문하기 <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </div>
+          </div>
+          
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none overflow-hidden hidden md:block">
+             <div className="text-[200px] font-bold text-white absolute top-1/2 left-1/4 -translate-y-1/2 select-none opacity-50 font-serif">
+               R
+             </div>
+          </div>
+
+          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
+            <ExternalLink className="text-white w-16 h-16" />
+          </div>
+        </a>
       </div>
 
       {/* Board Header */}

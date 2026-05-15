@@ -6,7 +6,7 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   alt: string;
   className?: string;
   containerClassName?: string;
-  priority?: boolean; // If true, uses loading="eager"
+  priority?: boolean; // If true, uses loading="eager" and fetchpriority="high"
 }
 
 const LazyImage: React.FC<LazyImageProps> = ({ 
@@ -42,7 +42,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
       {/* Skeleton / Loading State */}
       {isLoading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-200 animate-pulse">
-          {/* Optional: Add a subtle logo or icon here if desired */}
         </div>
       )}
 
@@ -62,6 +61,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
           isLoading ? 'opacity-0' : 'opacity-100'
         } ${className}`}
         loading={priority ? "eager" : "lazy"}
+        // @ts-ignore - fetchPriority is supported in modern browsers
+        fetchPriority={priority ? "high" : "auto"}
         decoding="async"
         onLoad={handleLoad}
         onError={handleError}
