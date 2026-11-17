@@ -21,11 +21,11 @@ const Terms: React.FC = () => {
       onDragStart={(e) => e.preventDefault()}   // Security: Disable Dragging
     >
       {/* Hero Section */}
-      <div className="relative w-full h-screen overflow-hidden bg-black">
+      <div className="relative w-full h-[60vh] min-h-[420px] overflow-hidden bg-brand-dark">
         {/* Background Image */}
         <div 
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://i.postimg.cc/dt4c5Pqd/tiles-1478505-1920.jpg')" }}
+            style={{ backgroundImage: "url('/media/brand/band-1280.webp')" }}
         />
         
         {/* Gradient Overlay Animation - Slides down to cover 50% */}
@@ -42,10 +42,10 @@ const Terms: React.FC = () => {
             }`}
         >
             {/* Font changed to font-sans (Gothic style) */}
-            <h1 className="text-4xl md:text-6xl font-sans text-white tracking-widest font-bold mb-6 drop-shadow-lg">
+            <h1 className="text-display-md text-white mb-5">
                 이용약관
             </h1>
-            <p className="text-white/70 text-[10px] md:text-xs tracking-[0.4em] font-sans font-bold uppercase">
+            <p className="kicker text-white/60">
                 Terms of Use
             </p>
         </div>

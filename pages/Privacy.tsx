@@ -20,11 +20,11 @@ const Privacy: React.FC = () => {
       onDragStart={(e) => e.preventDefault()}
     >
       {/* Hero Section */}
-      <div className="relative w-full h-screen overflow-hidden bg-black">
+      <div className="relative w-full h-[60vh] min-h-[420px] overflow-hidden bg-brand-dark">
         {/* Background Image - Updated to new URL */}
         <div 
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://i.postimg.cc/KzvYs7dQ/luxury-suite-4720815-1920.jpg')" }}
+            style={{ backgroundImage: "url('/media/brand/band-1280.webp')" }}
         />
         
         {/* Gradient Overlay Animation */}
@@ -40,10 +40,10 @@ const Privacy: React.FC = () => {
                 loaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
             }`}
         >
-            <h1 className="text-4xl md:text-6xl font-sans text-white tracking-widest font-bold mb-6 drop-shadow-lg">
+            <h1 className="text-display-md text-white mb-5">
                 개인정보처리방침
             </h1>
-            <p className="text-white/70 text-[10px] md:text-xs tracking-[0.4em] font-sans font-bold uppercase">
+            <p className="kicker text-white/60">
                 Privacy Policy
             </p>
         </div>
