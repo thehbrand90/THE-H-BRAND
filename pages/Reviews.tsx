@@ -7,33 +7,72 @@ import LazyImage from '../components/LazyImage';
 const Reviews: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | number | null>(null);
+  const [imageMap, setImageMap] = useState<Record<string, string[]>>({});
+  const [imageLoadingId, setImageLoadingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchReviews();
   }, []);
 
   const fetchReviews = async () => {
+    setLoading(true);
+    setLoadError(null);
     try {
+      // Do not use select('*') here. Attached photos are stored as base64 in
+      // image_urls (a single row is over 10MB), so pulling every column makes
+      // the query exceed the Supabase statement timeout and no review loads at
+      // all. The list asks only for text columns; photos are fetched per
+      // review when it is opened.
       const { data, error } = await supabase
         .from('reviews')
-        .select('*')
-        .order('created_at', { ascending: false }); // Order by created_at usually works better for duplicates
+        .select('id, title, client_name, content, rating, created_at, is_best')
+        .order('created_at', { ascending: false });
 
       if (error) {
         throw error;
       }
 
-      setReviews(data || []);
+      setReviews((data as Review[]) || []);
     } catch (error) {
       console.error('Error fetching reviews:', error);
+      setLoadError('후기를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
     } finally {
       setLoading(false);
     }
   };
 
+  const loadImages = async (id: string) => {
+    if (imageMap[id] || imageLoadingId === id) return;
+    setImageLoadingId(id);
+    try {
+      const { data, error } = await supabase
+        .from('reviews')
+        .select('image_urls')
+        .eq('id', id)
+        .maybeSingle();
+
+      if (error) {
+        throw error;
+      }
+
+      const urls = ((data as { image_urls?: string[] } | null)?.image_urls) || [];
+      setImageMap((prev) => ({ ...prev, [id]: urls }));
+    } catch (error) {
+      console.error('Error fetching review images:', error);
+      setImageMap((prev) => ({ ...prev, [id]: [] }));
+    } finally {
+      setImageLoadingId((prev) => (prev === id ? null : prev));
+    }
+  };
+
   const toggleExpand = (id: string | number) => {
-    setExpandedId(expandedId === id ? null : id);
+    const next = expandedId === id ? null : id;
+    setExpandedId(next);
+    if (next !== null) {
+      loadImages(String(next));
+    }
   };
 
   const formatDate = (dateString: string) => {
@@ -106,18 +145,26 @@ const Reviews: React.FC = () => {
            <div className="py-20 text-center text-gray-400 font-light">
              Loading reviews...
            </div>
+        ) : loadError ? (
+           <div className="py-20 text-center text-gray-500 font-light">
+             <p className="mb-6">{loadError}</p>
+             <button
+               onClick={fetchReviews}
+               className="border border-brand-dark px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-brand-dark hover:text-white transition-colors"
+             >
+               다시 시도
+             </button>
+           </div>
         ) : uniqueReviews.length === 0 ? (
            <div className="py-20 text-center text-gray-400 font-light">
              등록된 후기가 없습니다.
            </div>
         ) : (
           uniqueReviews.map((review, index) => {
-            // Determine image availability
-            const displayImages = (review.image_urls && review.image_urls.length > 0) 
-              ? review.image_urls 
-              : (review.image ? [review.image] : []);
-            
+            // Photos are fetched only for the review that is opened
+            const displayImages = imageMap[String(review.id)] || [];
             const hasImages = displayImages.length > 0;
+            const imagesPending = imageLoadingId === String(review.id);
             // Use index for No. display if IDs are messy UUIDs
             const displayId = uniqueReviews.length - index; 
 
@@ -169,6 +216,9 @@ const Reviews: React.FC = () => {
                       </div>
                       
                       {/* Image Attachment (Gallery) */}
+                      {imagesPending && (
+                        <p className="mt-8 text-xs text-gray-400 font-light">사진을 불러오는 중입니다…</p>
+                      )}
                       {hasImages && (
                         <div className="mt-8">
                            {/* Single Image Layout */}

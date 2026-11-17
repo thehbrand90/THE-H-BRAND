@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           <ul className="space-y-2">
             <li>
               <a 
-                href="http://instagram.com/design_theh" 
+                href="https://www.instagram.com/design_theh" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-sm text-gray-600 hover:text-brand-dark transition-colors"
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <a 
-                href="http://instagram.com/design_theh_" 
+                href="https://blog.naver.com/design_theh_" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-sm text-gray-600 hover:text-brand-dark transition-colors"
