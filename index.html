@@ -36,22 +36,8 @@
     />
 
     <!-- Hero is the LCP element: preload the exact file the viewport will use -->
-    <link
-      rel="preload"
-      as="image"
-      media="(min-width: 768px)"
-      href="/media/brand/hero-1920.webp"
-      imagesrcset="/media/brand/hero-768.webp 768w, /media/brand/hero-1280.webp 1280w, /media/brand/hero-1920.webp 1920w"
-      imagesizes="100vw"
-    />
-    <link
-      rel="preload"
-      as="image"
-      media="(max-width: 767px)"
-      href="/media/brand/hero-mobile-941.webp"
-      imagesrcset="/media/brand/hero-mobile-600.webp 600w, /media/brand/hero-mobile-941.webp 941w"
-      imagesizes="100vw"
-    />
+    <link rel="preload" as="image" media="(min-width: 768px)" href="/media/hero/slide-01.webp" />
+    <link rel="preload" as="image" media="(max-width: 767px)" href="/media/hero/slide-01-m.webp" />
 
     <script>
       tailwind.config = {

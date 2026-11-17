@@ -177,16 +177,49 @@ body {
 }
 
 /* ---------- Hero ---------- */
-.hero-zoom {
-  animation: hero-zoom 34s ease-in-out infinite alternate;
+/* Cross-dissolve layers: every slide is stacked, the active one at full
+   opacity. Because both slides sit at ~50% mid-transition, the charcoal
+   background never shows through as a black flash. */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+.hero-slide.is-active {
+  opacity: 1;
+}
+
+/* Slow Ken-Burns drift, staggered per slide so each return feels different */
+.hero-drift {
+  animation: hero-drift 26s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+  transform: scale(1.02);
+  transform-origin: center;
   will-change: transform;
 }
-@keyframes hero-zoom {
+@keyframes hero-drift {
   from {
-    transform: scale(1.015);
+    transform: scale(1.02);
   }
   to {
     transform: scale(1.085);
+  }
+}
+
+/* Hairline progress that refills for each 5.2s slide hold */
+.hero-progress {
+  width: 0;
+  animation-name: hero-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes hero-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }
 
@@ -247,7 +280,8 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .hero-zoom,
+  .hero-drift,
+  .hero-progress,
   .marquee,
   .hero-fade,
   .hero-line,

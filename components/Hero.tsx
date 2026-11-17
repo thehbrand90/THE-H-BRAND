@@ -1,42 +1,151 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const { Link } = ReactRouterDOM;
 
 /**
- * Home hero.
+ * Home hero — four-slide cross-dissolve.
  *
- * The old version was a 7-slide carousel of ~870 KB images (≈6 MB before the
- * first paint) that rendered black whenever the first slide was slow. It is
- * now a single preloaded, locally optimised WebP (67 KB at 1920w, 56 KB
- * portrait for mobile) with the wordmark set as real text instead of baked
- * into the photo.
+ * Reference studied for this treatment: 일하다디자인(ilhada.com) keeps one fixed
+ * wordmark over a rotating set of architectural photographs (4 slides, ~3s) and
+ * 릴스퀘어(lilsquare.com) opens with one continuous full-bleed visual and a
+ * single centred statement. Here the pace is borrowed from the first and the
+ * calm from the second: each slide holds ~5.2s and dissolves into the next over
+ * 1.6s, while a 26s Ken-Burns drift keeps the frame alive.
+ *
+ * Every layer is stacked and preloaded, so a transition never reveals the dark
+ * background underneath: the outgoing and incoming slides cross at mid-opacity.
+ * Each slide ships its own 9:16 portrait file for phones (~250 KB per device,
+ * never both sets).
  */
+type Slide = {
+  id: string;
+  src: string;
+  srcMobile: string;
+  alt: string;
+  label: string;
+  position: string;
+};
+
+const SLIDES: Slide[] = [
+  {
+    id: '01',
+    src: '/media/hero/slide-01.webp',
+    srcMobile: '/media/hero/slide-01-m.webp',
+    alt: '따뜻한 우드와 스톤으로 완성한 THE H BRAND의 주방 인테리어',
+    label: 'KITCHEN',
+    position: '50% 50%',
+  },
+  {
+    id: '02',
+    src: '/media/hero/slide-02.webp',
+    srcMobile: '/media/hero/slide-02-m.webp',
+    alt: '트라버틴 테이블과 린넨 소파로 완성한 거실',
+    label: 'LIVING',
+    position: '50% 55%',
+  },
+  {
+    id: '03',
+    src: '/media/hero/slide-03.webp',
+    srcMobile: '/media/hero/slide-03-m.webp',
+    alt: '아치형 트라버틴 개구부와 월넛 다이닝 공간',
+    label: 'DINING',
+    position: '50% 50%',
+  },
+  {
+    id: '04',
+    src: '/media/hero/slide-04.webp',
+    srcMobile: '/media/hero/slide-04-m.webp',
+    alt: '린넨과 월넛으로 마감한 마스터 침실',
+    label: 'SUITE',
+    position: '50% 45%',
+  },
+];
+
+const HOLD_MS = 5200;
+const pad = (n: number) => String(n).padStart(2, '0');
+
 const Hero: React.FC = () => {
+  const [index, setIndex] = useState(0);
+  const [ready, setReady] = useState(false);
+  const [reduced, setReduced] = useState(false);
+
+  // Motion preference: no rotation and no drift for users who ask for less.
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduced(mq.matches);
+    const onChange = (event: MediaQueryListEvent) => setReduced(event.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  // Warm only the set this device will actually show, then start rotating.
+  useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
+    const sources = SLIDES.map((slide) => (mobile ? slide.srcMobile : slide.src));
+    let cancelled = false;
+
+    Promise.all(
+      sources.map(
+        (src) =>
+          new Promise<void>((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+            img.src = src;
+          }),
+      ),
+    ).then(() => {
+      if (!cancelled) setReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!ready || reduced) return;
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % SLIDES.length);
+    }, HOLD_MS);
+    return () => window.clearInterval(timer);
+  }, [ready, reduced]);
+
+  const active = SLIDES[index];
+
   return (
     <section className="relative w-full h-[100svh] min-h-[600px] max-h-[1080px] overflow-hidden bg-brand-dark">
-      {/* Background */}
-      <picture>
-        <source
-          media="(max-width: 767px)"
-          srcSet="/media/brand/hero-mobile-600.webp 600w, /media/brand/hero-mobile-941.webp 941w"
-          sizes="100vw"
-        />
-        <img
-          src="/media/brand/hero-1920.webp"
-          srcSet="/media/brand/hero-768.webp 768w, /media/brand/hero-1280.webp 1280w, /media/brand/hero-1920.webp 1920w"
-          sizes="100vw"
-          alt="따뜻한 우드와 스톤으로 완성한 THE H BRAND의 주방 인테리어"
-          className="hero-zoom absolute inset-0 w-full h-full object-cover object-center"
-          fetchPriority="high"
-          decoding="async"
-        />
-      </picture>
+      {/* Dissolve layers */}
+      <div className="absolute inset-0">
+        {SLIDES.map((slide, i) => (
+          <div
+            key={slide.id}
+            className={`hero-slide${i === index ? ' is-active' : ''}`}
+            aria-hidden={i === index ? undefined : true}
+          >
+            <picture>
+              <source media="(max-width: 767px)" srcSet={slide.srcMobile} />
+              <img
+                src={slide.src}
+                alt={i === index ? slide.alt : ''}
+                style={{
+                  objectPosition: slide.position,
+                  animationDelay: `${-i * 6.5}s`,
+                }}
+                className="hero-drift absolute inset-0 w-full h-full object-cover"
+                fetchPriority={i === 0 ? 'high' : 'low'}
+                decoding="async"
+              />
+            </picture>
+          </div>
+        ))}
+      </div>
 
       {/* Legibility gradients */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/45" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-transparent to-black/20" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 to-transparent" />
 
       {/* Frame hairlines */}
@@ -49,6 +158,26 @@ const Hero: React.FC = () => {
             Interior Design &amp; Build — Gwangju · Jeonnam
           </p>
           <p className="kicker text-white/40 hidden md:block">10 Years of Field Experience</p>
+
+          {/* Compact slide counter for phones */}
+          <div className="flex sm:hidden items-center gap-2.5" aria-label="히어로 사진 순서">
+            <span className="font-montserrat text-[9px] tracking-[0.28em] text-white/85">
+              {pad(index + 1)}
+            </span>
+            <span className="relative block h-px w-9 bg-white/25 overflow-hidden">
+              <span
+                key={`m-${index}`}
+                className="hero-progress absolute inset-y-0 left-0 bg-white/85"
+                style={{
+                  animationDuration: `${HOLD_MS}ms`,
+                  animationPlayState: ready && !reduced ? 'running' : 'paused',
+                }}
+              />
+            </span>
+            <span className="font-montserrat text-[9px] tracking-[0.28em] text-white/40">
+              {pad(SLIDES.length)}
+            </span>
+          </div>
         </div>
 
         {/* Main statement */}
@@ -78,7 +207,7 @@ const Hero: React.FC = () => {
             className="hero-fade text-white/75 text-[13px] md:text-[15px] font-light leading-relaxed break-keep-all max-w-xl"
             style={{ animationDelay: '0.55s' }}
           >
-            실내건축공사업 면허를 보유한 Design &amp; Build 시공 법인.
+            실내건축공사업 면허를 보유한 Design &amp; Build 시공 법인.{' '}
             <br className="hidden sm:block" />
             설계부터 시공, 사후관리까지 — 기본에 충실한 정직한 시공으로 공간의 기준을 만듭니다.
           </p>
@@ -104,7 +233,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Bottom rail */}
-        <div className="hidden md:flex items-end justify-between pb-8">
+        <div className="hidden md:grid grid-cols-3 items-end pb-8">
           <div className="flex items-center gap-6 text-white/35">
             <span className="font-montserrat text-[10px] tracking-[0.3em]">SCROLL</span>
             <span className="relative block h-px w-24 bg-white/20 overflow-hidden">
@@ -112,15 +241,40 @@ const Hero: React.FC = () => {
             </span>
           </div>
 
-          <Link
-            to="/about"
-            className="group flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-300"
-          >
-            <span className="font-montserrat text-[10px] tracking-[0.28em]">ABOUT THE H</span>
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 transition-colors duration-300 group-hover:border-white/70">
-              <ArrowUpRight size={14} />
+          {/* Slide indicator: 01 ——— 04 + current room */}
+          <div className="flex items-center justify-center gap-4 text-white">
+            <span className="font-montserrat text-[10px] tracking-[0.3em] text-white/90 tabular-nums">
+              {pad(index + 1)}
             </span>
-          </Link>
+            <span className="relative block h-px w-24 bg-white/22 overflow-hidden">
+              <span
+                key={index}
+                className="hero-progress absolute inset-y-0 left-0 bg-white/85"
+                style={{
+                  animationDuration: `${HOLD_MS}ms`,
+                  animationPlayState: ready && !reduced ? 'running' : 'paused',
+                }}
+              />
+            </span>
+            <span className="font-montserrat text-[10px] tracking-[0.3em] text-white/40 tabular-nums">
+              {pad(SLIDES.length)}
+            </span>
+            <span className="ml-2 hidden lg:inline font-montserrat text-[9px] tracking-[0.3em] text-white/45 w-20">
+              {active.label}
+            </span>
+          </div>
+
+          <div className="flex justify-end pr-10">
+            <Link
+              to="/about"
+              className="group flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-300"
+            >
+              <span className="font-montserrat text-[10px] tracking-[0.28em]">ABOUT THE H</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 transition-colors duration-300 group-hover:border-white/70">
+                <ArrowUpRight size={14} />
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
