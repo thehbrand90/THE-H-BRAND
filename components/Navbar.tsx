@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavItem } from '../types';
 
 const { Link, useLocation } = ReactRouterDOM;
@@ -19,118 +19,163 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
-  // Prevent background scrolling when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => { document.body.style.overflow = 'unset'; };
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isMenuOpen]);
 
-  // Dynamic text color based on scroll and menu state
-  // On mobile, if menu is closed and we are on top of home, text is white. 
-  // If menu is open, text should be dark.
-  const isHomeTop = location.pathname === '/' && !isScrolled;
-  
-  const textColor = (isMenuOpen || !isHomeTop) ? 'text-brand-dark' : 'text-white';
-  const logoColor = (isMenuOpen || !isHomeTop) ? 'text-brand-dark' : 'text-white';
-  const bgColor = isScrolled ? 'bg-brand-bg/95 backdrop-blur-md shadow-sm' : 'bg-transparent';
-  const borderColor = (isMenuOpen || !isHomeTop) ? 'border-brand-dark/10' : 'border-white/20';
+  const isHome = location.pathname === '/';
+  const overHero = isHome && !isScrolled && !isMenuOpen;
+
+  const textColor = overHero ? 'text-white' : 'text-brand-ink';
+  const surface = overHero
+    ? 'bg-transparent border-white/10'
+    : 'bg-brand-bg/90 backdrop-blur-xl border-brand-line/70 shadow-[0_1px_0_0_rgba(0,0,0,0.02)]';
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${bgColor} ${borderColor} ${isMenuOpen ? 'bg-brand-bg border-none' : ''}`}
-    >
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-20 md:h-24 flex justify-between items-center">
-        
-        {/* LEFT: Logo (Horizontal) */}
-        <div className="flex items-center z-50 relative">
-          <Link to="/" className="group flex items-baseline" onClick={() => setIsMenuOpen(false)}>
-             <span className={`text-xl md:text-3xl font-bold tracking-widest transition-colors duration-300 ${logoColor} group-hover:text-brand-brown`}>
-                THE H
-             </span>
-             <span className={`text-xl md:text-3xl font-light tracking-widest transition-colors duration-300 ${logoColor} ml-2 group-hover:text-brand-brown`}>
-                BRAND
-             </span>
-             <span className={`hidden md:inline-block text-xs md:text-sm font-light tracking-widest transition-colors duration-300 ${logoColor} ml-1`}>
-                co.,Ltd
-             </span>
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${surface}`}
+      >
+        <div className="max-w-[1800px] mx-auto px-5 md:px-10 lg:px-14 h-[72px] md:h-[88px] flex justify-between items-center">
+          {/* Wordmark */}
+          <Link
+            to="/"
+            aria-label="THE H BRAND 홈으로"
+            className="group flex items-baseline gap-1.5 relative z-[60]"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span
+              className={`font-montserrat text-[17px] md:text-[22px] font-semibold tracking-[0.16em] transition-colors duration-300 ${textColor}`}
+            >
+              THE H
+            </span>
+            <span
+              className={`font-montserrat text-[17px] md:text-[22px] font-light tracking-[0.16em] transition-colors duration-300 ${textColor} group-hover:text-brand-clay`}
+            >
+              BRAND
+            </span>
+            <span
+              className={`hidden sm:inline-block ml-1 font-montserrat text-[10px] md:text-[11px] font-light tracking-[0.08em] transition-colors duration-300 ${
+                overHero ? 'text-white/50' : 'text-brand-gray'
+              }`}
+            >
+              Co., Ltd.
+            </span>
           </Link>
-        </div>
 
-        {/* RIGHT: Desktop Menu & Mobile Button */}
-        <div className="flex items-center">
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-10 items-center">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-xs font-semibold tracking-widest hover:text-brand-brown transition-colors ${textColor}`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-10 lg:gap-12">
+            {navItems.map((item) => {
+              const active = location.pathname.startsWith(item.path);
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative font-montserrat text-[11px] font-medium tracking-[0.24em] transition-colors duration-300 link-underline ${
+                    active ? 'text-brand-clay' : textColor
+                  } ${overHero && !active ? 'hover:text-white/70' : 'hover:text-brand-clay'}`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <Link
+              to="/contact"
+              className={`ml-2 inline-flex items-center font-montserrat text-[10px] font-semibold tracking-[0.22em] px-5 py-3 border transition-all duration-400 ${
+                overHero
+                  ? 'border-white/40 text-white hover:bg-white hover:text-brand-dark'
+                  : 'border-brand-dark/25 text-brand-dark hover:bg-brand-dark hover:text-white'
+              }`}
+            >
+              상담 문의
+            </Link>
           </div>
-          
-          {/* User / Admin Icon */}
-          <Link 
-            to="/admin"
-            className={`hidden md:block z-50 p-2 ml-4 md:ml-10 hover:text-brand-brown transition-colors ${textColor}`}
-            aria-label="Admin Login"
-          >
-            <User size={24} strokeWidth={1.5} />
-          </Link>
 
-          {/* Mobile Menu Button - Hamburger */}
-          <button 
-            className={`md:hidden z-50 p-2 ml-2 transition-colors duration-300 ${textColor}`}
+          {/* Mobile toggle */}
+          <button
+            className={`md:hidden z-[60] p-2 -mr-2 transition-colors duration-300 ${textColor}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle Menu"
+            aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu Overlay */}
-        <div 
-          className={`fixed inset-0 bg-brand-bg z-40 flex flex-col justify-center items-center transition-transform duration-500 ease-in-out md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
-          style={{ height: '100dvh' }} // Use dynamic viewport height for mobile browsers
-        >
-          <div className="flex flex-col space-y-8 text-center">
-            {navItems.map((item) => (
+      {/* Mobile full-screen menu */}
+      <div
+        className={`fixed inset-0 z-50 md:hidden bg-brand-bg transition-all duration-500 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ height: '100dvh' }}
+      >
+        <div className="h-full flex flex-col justify-between px-7 pt-28 pb-10">
+          <div className="flex flex-col">
+            {navItems.map((item, i) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-2xl font-light tracking-wider text-brand-dark hover:text-brand-brown transition-colors py-2"
+                className="group flex items-baseline gap-4 py-4 border-b border-brand-line/60"
+                style={{
+                  transitionDelay: `${80 + i * 45}ms`,
+                  transition: 'opacity 500ms, transform 500ms',
+                  opacity: isMenuOpen ? 1 : 0,
+                  transform: isMenuOpen ? 'none' : 'translateY(12px)',
+                }}
               >
-                {item.label}
+                <span className="font-montserrat text-[9px] tracking-[0.2em] text-brand-clay">
+                  0{i + 1}
+                </span>
+                <span className="text-2xl font-light tracking-[0.06em] text-brand-ink group-hover:text-brand-clay transition-colors">
+                  {item.label}
+                </span>
               </Link>
             ))}
             <Link
-                to="/admin"
-                className="text-lg font-light tracking-wider text-brand-dark hover:text-brand-brown transition-colors pt-8 border-t border-brand-dark/20 w-20 mx-auto"
-              >
-                ADMIN
+              to="/admin"
+              className="mt-6 font-montserrat text-[10px] tracking-[0.22em] text-brand-gray"
+            >
+              ADMIN LOGIN
             </Link>
+          </div>
+
+          <div className="text-[11px] leading-relaxed text-brand-gray">
+            <p className="font-montserrat tracking-[0.2em] text-brand-ink mb-2">THE H BRAND</p>
+            <p>광주광역시 광산구 풍영로 206, 3층</p>
+            <p>010-5430-0452 · thehbrand@naver.com</p>
+            <div className="flex gap-4 mt-4 font-montserrat tracking-[0.16em] text-[10px] text-brand-ink">
+              <a href="https://www.instagram.com/design_theh" target="_blank" rel="noopener noreferrer">
+                INSTAGRAM
+              </a>
+              <a href="https://blog.naver.com/design_theh_" target="_blank" rel="noopener noreferrer">
+                BLOG
+              </a>
+              <a
+                href="https://pf.kakao.com/_xbAies/chat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                KAKAO
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 

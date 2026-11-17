@@ -1,249 +1,129 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const { Link } = ReactRouterDOM;
 
-const slides = [
-  {
-    id: 1,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p1.webp',
-    alt: "Modern Interior Design 1"
-  },
-  {
-    id: 2,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p2.webp',
-    alt: "Modern Interior Design 2"
-  },
-  {
-    id: 3,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p3.webp',
-    alt: "Modern Interior Design 3"
-  },
-  {
-    id: 4,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p4.webp',
-    alt: "Modern Interior Design 4"
-  },
-  {
-    id: 5,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p5.webp',
-    alt: "Modern Interior Design 5"
-  },
-  {
-    id: 6,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p6.webp',
-    alt: "Modern Interior Design 6"
-  },
-  {
-    id: 7,
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/p7.webp',
-    alt: "Modern Interior Design 7"
-  }
-];
-
+/**
+ * Home hero.
+ *
+ * The old version was a 7-slide carousel of ~870 KB images (≈6 MB before the
+ * first paint) that rendered black whenever the first slide was slow. It is
+ * now a single preloaded, locally optimised WebP (67 KB at 1920w, 56 KB
+ * portrait for mobile) with the wordmark set as real text instead of baked
+ * into the photo.
+ */
 const Hero: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // Slide Navigation Logic
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  }, []);
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  // Auto-play
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [nextSlide]);
-
-  // Particle Effect Logic
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let particles: { x: number; y: number; size: number; speed: number; opacity: number }[] = [];
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    const createParticles = () => {
-      particles = [];
-      const particleCount = Math.floor(window.innerWidth / 20); // Reduced count for cleaner look
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.1,
-          speed: Math.random() * 0.2 + 0.05,
-          opacity: Math.random() * 0.4 + 0.05,
-        });
-      }
-    };
-
-    const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        p.y -= p.speed;
-        if (p.y < -10) {
-          p.y = canvas.height + 10;
-          p.x = Math.random() * canvas.width;
-        }
-      });
-      animationFrameId = requestAnimationFrame(drawParticles);
-    };
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    createParticles();
-    drawParticles();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black group">
-      
-      {/* Background Slider */}
-      {slides.map((slide, index) => (
-        <div 
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out bg-gray-900 ${
-            index === currentSlide ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
-          }`}
-        >
-          {/* Changed from background-image div to img tag for better performance control */}
-          <img
-            src={slide.image}
-            alt={slide.alt}
-            className={`absolute inset-0 w-full h-full object-cover ${
-              index === currentSlide ? 'animate-subtle-zoom' : ''
-            }`}
-            // Eager load the first image for LCP, lazy load the rest
-            loading={index === 0 ? "eager" : "lazy"}
-            // @ts-ignore
-            fetchPriority={index === 0 ? "high" : "auto"}
-            decoding="async"
-            onError={(e) => {
-              // Fallback if image fails - keep dark background
-              e.currentTarget.style.display = 'none';
-            }}
-          />
-          <div className="absolute inset-0 bg-black/50"></div>
+    <section className="relative w-full h-[100svh] min-h-[600px] max-h-[1080px] overflow-hidden bg-brand-dark">
+      {/* Background */}
+      <picture>
+        <source
+          media="(max-width: 767px)"
+          srcSet="/media/brand/hero-mobile-600.webp 600w, /media/brand/hero-mobile-941.webp 941w"
+          sizes="100vw"
+        />
+        <img
+          src="/media/brand/hero-1920.webp"
+          srcSet="/media/brand/hero-768.webp 768w, /media/brand/hero-1280.webp 1280w, /media/brand/hero-1920.webp 1920w"
+          sizes="100vw"
+          alt="따뜻한 우드와 스톤으로 완성한 THE H BRAND의 주방 인테리어"
+          className="hero-zoom absolute inset-0 w-full h-full object-cover object-center"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </picture>
+
+      {/* Legibility gradients */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/45" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-black/20" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 to-transparent" />
+
+      {/* Frame hairlines */}
+      <div className="pointer-events-none absolute inset-x-5 md:inset-x-10 lg:inset-x-14 top-[88px] bottom-8 border-x border-white/[0.08] hidden md:block" />
+
+      <div className="relative z-10 h-full max-w-[1800px] mx-auto px-5 md:px-10 lg:px-14 flex flex-col justify-between">
+        {/* Top meta row (sits below the fixed navbar) */}
+        <div className="flex justify-between items-start pt-24 md:pt-36">
+          <p className="kicker text-white/55 hidden sm:block">
+            Interior Design &amp; Build — Gwangju · Jeonnam
+          </p>
+          <p className="kicker text-white/40 hidden md:block">10 Years of Field Experience</p>
         </div>
-      ))}
 
-      {/* Particle Overlay Canvas */}
-      <canvas 
-        ref={canvasRef} 
-        className="absolute inset-0 z-10 pointer-events-none opacity-30"
-      />
+        {/* Main statement */}
+        <div className="pb-16 md:pb-24 max-w-4xl">
+          <p className="hero-fade kicker text-white/60 mb-6 md:mb-8" style={{ animationDelay: '0.15s' }}>
+            THE H BRAND
+          </p>
 
-      {/* Infinite Scrolling Typography - Moved to Bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none overflow-hidden select-none pb-8 md:pb-16">
-        <div className="w-full opacity-100">
-          <div className="flex whitespace-nowrap animate-marquee">
-             {/* Repeat content enough times to ensure seamless loop */}
-             {[...Array(12)].map((_, i) => (
-                <div key={i} className="flex items-center mx-6">
-                  <span 
-                    className="text-[4rem] md:text-[7rem] lg:text-[9rem] font-black tracking-tighter text-white/10 transition-all duration-500"
-                  >
-                    THE H BRAND.
-                  </span>
-                </div>
-             ))}
+          <h1
+            className="hero-fade text-white font-light leading-[1.06] tracking-[-0.02em]"
+            style={{
+              animationDelay: '0.3s',
+              fontSize: 'clamp(2.4rem, 6.4vw, 5.2rem)',
+            }}
+          >
+            프리미엄 공간,
+            <br />
+            <span className="text-white/80">그 시작과 완성.</span>
+          </h1>
+
+          <div
+            className="hero-line h-px w-20 md:w-28 bg-white/50 my-7 md:my-9"
+            aria-hidden="true"
+          />
+
+          <p
+            className="hero-fade text-white/75 text-[13px] md:text-[15px] font-light leading-relaxed break-keep-all max-w-xl"
+            style={{ animationDelay: '0.55s' }}
+          >
+            실내건축공사업 면허를 보유한 Design &amp; Build 시공 법인.
+            <br className="hidden sm:block" />
+            설계부터 시공, 사후관리까지 — 기본에 충실한 정직한 시공으로 공간의 기준을 만듭니다.
+          </p>
+
+          <div
+            className="hero-fade mt-9 md:mt-12 grid grid-cols-2 gap-2 pr-12 md:flex md:flex-wrap md:items-center md:gap-4 md:pr-0"
+            style={{ animationDelay: '0.7s' }}
+          >
+            <Link
+              to="/portfolio"
+              className="group inline-flex w-full md:w-auto items-center justify-center gap-2 md:gap-3 bg-white text-brand-dark px-4 md:px-9 py-3.5 md:py-[1.05rem] font-montserrat text-[9.5px] md:text-[11px] font-semibold tracking-[0.18em] md:tracking-[0.22em] hover:bg-brand-clay hover:text-white transition-all duration-400"
+            >
+              포트폴리오 보기
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-400 group-hover:translate-x-1"
+              />
+            </Link>
+            <Link to="/contact" className="btn-ghost-light w-full md:w-auto !px-4 md:!px-9 !py-3.5 md:!py-4 !text-[9.5px] md:!text-[11px] !tracking-[0.18em] md:!tracking-[0.22em]">
+              상담 문의하기
+            </Link>
           </div>
         </div>
+
+        {/* Bottom rail */}
+        <div className="hidden md:flex items-end justify-between pb-8">
+          <div className="flex items-center gap-6 text-white/35">
+            <span className="font-montserrat text-[10px] tracking-[0.3em]">SCROLL</span>
+            <span className="relative block h-px w-24 bg-white/20 overflow-hidden">
+              <span className="absolute inset-y-0 left-0 w-1/3 bg-white/70 animate-[lineGrow_2.4s_ease-in-out_infinite]" />
+            </span>
+          </div>
+
+          <Link
+            to="/about"
+            className="group flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-300"
+          >
+            <span className="font-montserrat text-[10px] tracking-[0.28em]">ABOUT THE H</span>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 transition-colors duration-300 group-hover:border-white/70">
+              <ArrowUpRight size={14} />
+            </span>
+          </Link>
+        </div>
       </div>
-
-      {/* Center Static Content - Anchor Point */}
-      <div className="absolute inset-0 z-30 flex flex-col justify-center items-center text-center pointer-events-none">
-          <p className="text-white/90 text-sm md:text-lg tracking-[0.4em] uppercase font-light mb-8 animate-fade-in-up font-sans">
-            프리미엄 공간, 그 시작과 완성.
-          </p>
-          {/* Increased Center Line Size */}
-          <div className="h-[2px] w-24 md:w-32 bg-white/70 mb-8 animate-fade-in-up delay-100"></div>
-          <p className="text-white/70 text-xs md:text-sm font-light tracking-widest animate-fade-in-up delay-200">
-            Design & Build Corporation
-          </p>
-      </div>
-
-      {/* Slider Controls - Left */}
-      <button 
-        onClick={prevSlide}
-        className="absolute left-2 md:left-8 top-1/2 transform -translate-y-1/2 z-40 text-white/30 hover:text-white transition-all duration-300 p-2 rounded-full opacity-0 group-hover:opacity-100 hidden md:block"
-        aria-label="Previous Slide"
-      >
-        <ChevronLeft size={48} strokeWidth={0.5} />
-      </button>
-
-      {/* Slider Controls - Right */}
-      <button 
-        onClick={nextSlide}
-        className="absolute right-2 md:right-8 top-1/2 transform -translate-y-1/2 z-40 text-white/30 hover:text-white transition-all duration-300 p-2 rounded-full opacity-0 group-hover:opacity-100 hidden md:block"
-        aria-label="Next Slide"
-      >
-        <ChevronRight size={48} strokeWidth={0.5} />
-      </button>
-
-      {/* --- Footer Area Layout --- */}
-
-      {/* 1. Indicators */}
-      <div className="absolute bottom-8 left-6 md:bottom-12 md:left-12 z-30 flex space-x-2 md:space-x-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-[1px] transition-all duration-500 ${
-              index === currentSlide ? 'w-8 md:w-12 bg-white' : 'w-4 md:w-6 bg-white/30 hover:bg-white/60'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* 2. Slogan - Small text with Bold Brand */}
-      <div className="absolute bottom-24 md:bottom-20 left-0 w-full z-20 flex justify-center text-center px-6 pointer-events-none animate-fade-in-up delay-300">
-        <p className="text-xs md:text-sm font-light tracking-widest text-white/60 leading-relaxed font-sans">
-          공간의 가치를 높이는 기준, <span className="text-white font-bold ml-1">THE H BRAND</span>
-        </p>
-      </div>
-
-      {/* 3. Button */}
-      <div className="absolute bottom-8 right-6 md:bottom-10 md:right-12 z-40 animate-fade-in-up delay-500">
-        <Link 
-          to="/portfolio" 
-          className="group relative inline-flex items-center justify-center px-6 py-3 border border-white/30 text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:border-white transition-all duration-500 backdrop-blur-sm"
-        >
-          <span className="relative z-10">Explore Portfolio</span>
-        </Link>
-      </div>
-
-    </div>
+    </section>
   );
 };
 

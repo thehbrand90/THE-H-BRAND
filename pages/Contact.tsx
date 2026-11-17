@@ -12,7 +12,7 @@ const Contact: React.FC = () => {
         {/* Left: Heavy Building Image */}
         <div className="relative w-full lg:w-[45%] xl:w-[50%] min-h-[50vh] lg:min-h-auto bg-[#2c2c2c]">
           <LazyImage 
-            src="https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2574&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1486718448742-163732cd1544?q=72&w=1400&auto=format&fit=crop" 
             alt="Office Building" 
             className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 contrast-125"
             containerClassName="w-full h-full"
@@ -32,25 +32,30 @@ const Contact: React.FC = () => {
         {/* Right: Contact Info & Map - Removed whitespace/gap by using flex and padding */}
         <div className="w-full lg:w-[55%] xl:w-[50%] bg-brand-bg flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 lg:py-24">
           <div className="max-w-xl w-full">
-            <h1 className="text-5xl md:text-7xl font-bold mb-16 text-brand-dark tracking-tighter">CONTACT</h1>
+            <p className="font-montserrat text-[10px] tracking-[0.32em] text-brand-clay mb-6">CONTACT</p>
+            <h1 className="text-display-lg mb-16 text-brand-ink break-keep-all">
+              상담은 여기서
+              <br />
+              시작됩니다.
+            </h1>
             
             <div className="space-y-12">
               {/* Office Info */}
               <div className="group">
-                <h3 className="flex items-center text-xs font-bold uppercase tracking-widest text-brand-brown mb-3 border-b border-brand-brown/20 pb-2 inline-block">
+                <h3 className="flex items-center font-montserrat text-[9px] font-medium tracking-[0.26em] text-brand-clay mb-3 border-b border-brand-clay/25 pb-2 inline-block">
                   <MapPin className="w-3 h-3 mr-2" /> Address
                 </h3>
-                <p className="text-lg md:text-xl font-light leading-relaxed text-brand-dark">
+                <p className="text-lg md:text-xl font-light leading-relaxed text-brand-ink break-keep-all">
                   광주광역시 광산구 풍영로 206, 3층<br />
                   주식회사 디에이치브랜드
                 </p>
-                <p className="text-xs text-gray-400 mt-2 font-light tracking-wide">THE H Brand co., Ltd</p>
-                <p className="text-xs text-gray-400 mt-1 font-light tracking-wide">LICENSE: 광주광산-26-나-03 (실내건축공사업)</p>
+                <p className="text-[11px] text-brand-gray mt-2 font-light tracking-[0.08em]">THE H BRAND Co., Ltd.</p>
+                <p className="text-[11px] text-brand-gray mt-1 font-light tracking-[0.08em]">LICENSE: 광주광산-26-나-03 (실내건축공사업)</p>
               </div>
 
               {/* Inquiry Info */}
               <div>
-                <h3 className="flex items-center text-xs font-bold uppercase tracking-widest text-brand-brown mb-3 border-b border-brand-brown/20 pb-2 inline-block">
+                <h3 className="flex items-center font-montserrat text-[9px] font-medium tracking-[0.26em] text-brand-clay mb-3 border-b border-brand-clay/25 pb-2 inline-block">
                   <Phone className="w-3 h-3 mr-2" /> Inquiry
                 </h3>
                 <p className="text-xl md:text-2xl font-light text-brand-dark mb-1">
@@ -71,10 +76,10 @@ const Contact: React.FC = () => {
 
               {/* Hours */}
               <div>
-                <h3 className="flex items-center text-xs font-bold uppercase tracking-widest text-brand-brown mb-3 border-b border-brand-brown/20 pb-2 inline-block">
+                <h3 className="flex items-center font-montserrat text-[9px] font-medium tracking-[0.26em] text-brand-clay mb-3 border-b border-brand-clay/25 pb-2 inline-block">
                   <Clock className="w-3 h-3 mr-2" /> Working Hours
                 </h3>
-                <p className="text-sm text-gray-600 font-light leading-loose">
+                <p className="text-sm text-brand-gray font-light leading-loose">
                   Mon - Fri : 09:00 - 18:00<br />
                   Sat : By Appointment Only<br />
                   Sun : Closed
@@ -90,7 +95,7 @@ const Contact: React.FC = () => {
                    className="block w-full h-48 relative group overflow-hidden bg-gray-200"
                 >
                    <LazyImage 
-                     src="https://i.postimg.cc/XqpY4cCR/image.png" 
+                     src="/media/brand/contact-map.webp" 
                      alt="Location Map" 
                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                      containerClassName="w-full h-full"
@@ -125,29 +130,29 @@ const Contact: React.FC = () => {
       </div>
 
       {/* Kakao Banner Section - Centered with max-width */}
-      <div className="bg-white py-20 px-6 border-t border-gray-100">
+      <div className="bg-brand-bg py-16 md:py-20 px-5 md:px-10 border-t border-brand-line/60">
         <div className="max-w-[1000px] mx-auto">
           <a 
             href="https://pf.kakao.com/_xbAies/chat" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="block group relative w-full bg-[#FAE100] shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden"
+            className="block group relative w-full bg-brand-paper border border-brand-line/70 hover:border-brand-clay/50 transition-all duration-500 overflow-hidden"
           >
             <div className="flex flex-col md:flex-row items-center justify-between px-8 py-8 md:px-12">
               <div className="flex items-center space-x-6 mb-6 md:mb-0">
-                 <div className="bg-[#3b1e1e] p-3 rounded text-[#FAE100]">
+                 <div className="bg-brand-dark p-3 rounded-full text-brand-bg">
                    <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.48 2 10.77C2 13.56 3.78 16.03 6.47 17.38L5.5 21L9.12 18.59C10.03 18.79 11 18.89 12 18.89C17.52 18.89 22 15.41 22 11.12C22 6.83 17.52 3 12 3Z"/></svg>
                  </div>
                  <div className="text-center md:text-left">
-                    <p className="text-[#3b1e1e] font-sans font-bold text-xl mb-1">
+                    <p className="text-brand-ink font-light text-xl md:text-2xl mb-1 break-keep-all">
                       "공간에 대한 고민, 편하게 이야기해요"
                     </p>
-                    <p className="text-[#3b1e1e]/60 text-xs font-bold tracking-widest uppercase">
+                    <p className="font-montserrat text-brand-gray text-[9px] tracking-[0.28em] uppercase">
                       KakaoTalk Channel
                     </p>
                  </div>
               </div>
-              <span className="inline-flex items-center text-[#3b1e1e] text-xs font-bold tracking-widest uppercase border-b-2 border-[#3b1e1e] pb-1 group-hover:border-opacity-50 transition-colors">
+              <span className="inline-flex items-center font-montserrat text-brand-ink text-[10px] font-semibold tracking-[0.22em] border-b border-brand-ink/40 pb-1 group-hover:border-brand-clay group-hover:text-brand-clay transition-colors">
                  Start Chat <ArrowRight className="ml-2 w-3 h-3" />
               </span>
             </div>
@@ -156,14 +161,15 @@ const Contact: React.FC = () => {
       </div>
 
       {/* AS Request Section */}
-      <div className="bg-brand-bg py-20 px-6 md:px-20 border-t border-gray-200">
+      <div className="bg-brand-paper py-20 md:py-24 px-5 md:px-10 border-t border-brand-line/60">
         <div className="max-w-[1600px] mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-brand-dark">A/S REQUEST</h2>
+          <p className="font-montserrat text-[10px] tracking-[0.32em] text-brand-clay mb-5">A/S REQUEST</p>
+          <h2 className="text-display-md mb-12 text-brand-ink break-keep-all">책임지는 시공, 끝까지 함께합니다.</h2>
           <div className="flex flex-col lg:flex-row shadow-2xl bg-white">
             
               <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-[800px] bg-gray-800">
                 <LazyImage 
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2531&auto=format&fit=crop" 
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=72&w=1400&auto=format&fit=crop" 
                     alt="Interior Detail" 
                     className="absolute inset-0 w-full h-full object-cover"
                     containerClassName="w-full h-full"

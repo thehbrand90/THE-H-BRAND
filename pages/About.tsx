@@ -51,7 +51,7 @@ const About: React.FC = () => {
       title: "THE CONTEMPORARY",
       sub: "동시대의 호흡을 담다",
       desc: "지금의 생활 방식에 맞춘 설계 기준으로, 공간의 ‘온도’를 정확히 맞춥니다. 단순히 예쁜 공간이 아닌, 현재를 살아가는 사람들의 라이프스타일을 깊이 있게 관찰하고 반영하여 가장 편안하고 합리적인 공간을 제안합니다.",
-      image: "https://i.postimg.cc/9fNRC8X8/a1.jpg",
+      image: "/media/brand/about-a1.webp",
       layout: "text-left" 
     },
     {
@@ -59,16 +59,16 @@ const About: React.FC = () => {
       title: "BEYOND THE TREND",
       sub: "유행을 넘어 시대를 상징하다",
       desc: "찰나의 유행을 넘어, 시간이 흘러도 변치 않는 시대의 미감을 기록합니다. 자극적인 화려함보다는 재료 본연의 물성과 빛의 흐름을 살려, 오래 머물수록 깊이가 느껴지는 타임리스(Timeless) 디자인을 지향합니다.",
-      image: "https://i.postimg.cc/CK6BSPM6/a3.jpg",
+      image: "/media/brand/about-a3.webp",
       layout: "image-left",
-      floatingImage: "https://i.postimg.cc/YSyGMn2P/a3(1).jpg"
+      floatingImage: "/media/brand/about-a3b.webp"
     },
     {
       id: 3,
       title: "ARCHITECTURE OF THE ERA",
       sub: "사람과 시대 사이의 디자인",
       desc: "시대가 요구하는 기능과 품질 기준으로, 공간의 가치를 구조화합니다. 우리는 인테리어를 넘어 건축적 관점에서 공간을 해석하며, 구조적인 완성도와 미학적인 밸런스를 동시에 추구합니다.",
-      image: "https://i.postimg.cc/fbgtD2WF/a2.jpg",
+      image: "/media/brand/about-a2.webp",
       layout: "text-left"
     },
     {
@@ -76,9 +76,9 @@ const About: React.FC = () => {
       title: "NEW STANDARDS",
       sub: "법인으로서 제안하는 새로운 가치",
       desc: "오늘의 기술 기준과 내일의 감각이 만나는, 새로운 주거 표준을 제시합니다. 체계적인 시공 프로세스와 투명한 견적 시스템, 그리고 철저한 사후관리까지. THE H BRAND는 인테리어 시장의 새로운 기준이 되겠습니다.",
-      image: "https://i.postimg.cc/LXYqXthb/a4.jpg",
+      image: "/media/brand/about-a4.webp",
       layout: "image-left",
-      floatingImage: "https://i.postimg.cc/KzkKzP4p/a4(1).jpg"
+      floatingImage: "/media/brand/about-a4b.webp"
     }
   ];
 
@@ -90,30 +90,31 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className="pt-24 md:pt-32 pb-0 px-0 min-h-screen bg-brand-bg font-montserrat text-brand-dark">
-      <div className="px-6 md:px-20 max-w-[1800px] mx-auto">
+    <div className="pt-28 md:pt-36 pb-0 px-0 min-h-screen bg-brand-bg text-brand-ink">
+      <div className="px-5 md:px-10 lg:px-14 max-w-[1800px] mx-auto">
       
         {/* Page Header */}
-        <div className="mb-12">
-          <h1 className="text-5xl md:text-9xl font-bold tracking-tighter mb-8 select-none">
-            ABOUT
-          </h1>
-          <h2 className="text-lg md:text-3xl font-light leading-snug max-w-5xl tracking-tight">
-            저희 THE H는 단순히 인테리어를 '시공'하는 회사가 아니라, <br className="hidden md:block" />
-            <span className="font-bold text-brand-brown">사람이 머무는 공간에 신뢰와 기준을 설계하는 브랜드</span>입니다.
+        <div className="pb-12 md:pb-16 border-b border-brand-line/60">
+          <p className="font-montserrat text-[10px] tracking-[0.32em] text-brand-clay mb-6">ABOUT</p>
+          <h1 className="text-display-xl text-brand-ink mb-8">The H Brand</h1>
+          <h2 className="text-base md:text-2xl font-light leading-relaxed max-w-4xl text-brand-gray break-keep-all">
+            저희 THE H는 단순히 인테리어를 &lsquo;시공&rsquo;하는 회사가 아니라,
+            <br className="hidden md:block" />
+            <span className="text-brand-ink">사람이 머무는 공간에 신뢰와 기준을 설계하는 브랜드</span>
+            입니다.
           </h2>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex space-x-8 md:space-x-12 mb-16 md:mb-24 border-b border-gray-300 overflow-x-auto">
+        <div className="flex gap-2 md:gap-3 mb-14 md:mb-20 overflow-x-auto hide-scrollbar py-8">
           {['IDENTITY', 'COMPANY', 'TEAM'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab as any)}
-              className={`pb-4 text-sm md:text-base font-bold tracking-[0.2em] transition-all duration-300 whitespace-nowrap ${
-                activeTab === tab 
-                  ? 'text-brand-brown border-b-2 border-brand-brown' 
-                  : 'text-gray-400 hover:text-brand-dark'
+              className={`shrink-0 font-montserrat text-[10px] tracking-[0.2em] px-5 py-3 border transition-all duration-300 ${
+                activeTab === tab
+                  ? 'bg-brand-dark border-brand-dark text-brand-bg'
+                  : 'border-brand-line text-brand-gray hover:border-brand-dark hover:text-brand-ink'
               }`}
             >
               {tab}
@@ -129,7 +130,7 @@ const About: React.FC = () => {
           {/* Section 0: Brand Identity Definition (Beige/Gray Split) */}
           <section className="w-full flex flex-col md:flex-row min-h-[600px]">
             {/* Left: Definition List (Beige #F2F0EB) */}
-            <div className="w-full md:w-1/2 bg-[#F2F0EB] p-10 md:p-24 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 bg-brand-paper p-10 md:p-24 flex flex-col justify-center">
               <FadeIn>
                 <h3 className="text-3xl md:text-5xl font-bold text-brand-brown mb-12 md:mb-16 tracking-tight">
                   What is THE H?
@@ -155,7 +156,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Right: Logo Center (Light Gray #F5F5F5) */}
-            <div className="w-full md:w-1/2 bg-[#F5F5F5] flex items-center justify-center p-10 min-h-[300px] md:min-h-auto">
+            <div className="w-full md:w-1/2 bg-brand-stone/40 flex items-center justify-center p-10 min-h-[300px] md:min-h-auto">
               <FadeIn delay="200ms">
                 <div className="text-center">
                    <h2 className="text-4xl md:text-7xl font-bold tracking-[0.2em] text-brand-dark mb-4">THE H</h2>
@@ -170,7 +171,7 @@ const About: React.FC = () => {
              {/* Left: Large Vertical Image */}
              <div className="w-full md:w-1/2 h-[500px] md:h-auto relative overflow-hidden bg-gray-200">
                 <LazyImage 
-                  src="https://i.postimg.cc/JzNvfvqp/6.jpg" 
+                  src="/media/brand/about-hall.webp" 
                   alt="Interior Hallway" 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
                   containerClassName="w-full h-full"
@@ -268,7 +269,7 @@ const About: React.FC = () => {
                           )}
 
                           {/* Description */}
-                          <p className="text-base md:text-lg text-white/70 font-light leading-loose text-justify">
+                          <p className="text-base md:text-lg text-white/70 font-light leading-loose">
                             {section.desc}
                           </p>
                         </div>
@@ -341,7 +342,7 @@ const About: React.FC = () => {
                 <FadeIn delay="200ms">
                   <div className="relative w-full bg-gray-50">
                     <LazyImage 
-                      src="https://i.postimg.cc/FHDPjLVj/Kakao-Talk-20260112-175428559-02.jpg" 
+                      src="/media/brand/about-office.webp" 
                       alt="About Us" 
                       className="w-full h-auto object-contain grayscale hover:grayscale-0 transition-all duration-1000 shadow-xl"
                       containerClassName="w-full h-auto"
@@ -362,7 +363,7 @@ const About: React.FC = () => {
                 <FadeIn>
                   <div className="relative w-full">
                     <LazyImage 
-                      src="https://i.postimg.cc/gjWq9zKk/teaam.png" 
+                      src="/media/brand/about-team.webp" 
                       alt="Premium Standard" 
                       className="w-full h-auto object-contain shadow-2xl"
                       containerClassName="w-full h-auto"
@@ -387,7 +388,7 @@ const About: React.FC = () => {
                   </h2>
                   <div className="w-12 h-[2px] bg-white/30 mb-10"></div>
                   
-                  <div className="space-y-6 text-white/80 font-light text-sm md:text-base leading-8 break-keep text-justify relative z-10">
+                  <div className="space-y-6 text-white/80 font-light text-sm md:text-base leading-8 break-keep relative z-10">
                     <p>
                       THE H BRAND는 실내건축면허를 보유한 전문 시공 법인으로서, 각 프로젝트마다 기획·디자인·시공·관리까지 체계적으로 책임집니다.
                     </p>
@@ -412,7 +413,7 @@ const About: React.FC = () => {
           </section>
 
           {/* Section 3: The Quote Banner */}
-          <section className="w-full bg-[#fcfbf9] py-32 px-6 text-center border-t border-gray-100">
+          <section className="w-full bg-brand-paper py-32 px-6 text-center border-t border-gray-100">
             <FadeIn>
               <div className="max-w-4xl mx-auto relative">
                 <h3 className="text-xl md:text-3xl font-sans font-bold text-brand-dark mb-12 leading-loose tracking-wide break-keep">
@@ -433,13 +434,13 @@ const About: React.FC = () => {
           </section>
 
           {/* Part 4: Our Core Values (Minimalist Beige) */}
-          <section className="w-full bg-[#EAE8E4] py-24 px-6 md:px-20 border-t border-brand-dark/5">
+          <section className="w-full bg-brand-stone/30 py-24 px-6 md:px-20 border-t border-brand-dark/5">
             <div className="max-w-[1600px] mx-auto w-full flex flex-col lg:flex-row gap-20 items-start">
                {/* Left: Minimalist Image */}
                <div className="w-full lg:w-[40%]">
                  <div className="sticky top-32 overflow-hidden bg-gray-200">
                    <LazyImage 
-                      src="https://i.postimg.cc/6qQ9HRvx/20.jpg" 
+                      src="/media/brand/about-min.webp" 
                       alt="Minimalist Interior" 
                       className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-[2000ms]"
                       containerClassName="w-full h-full"
@@ -458,7 +459,7 @@ const About: React.FC = () => {
                               <Layout className="w-8 h-8 text-brand-dark mb-6 stroke-1 group-hover:text-brand-brown transition-colors" />
                               <h4 className="text-xl font-bold text-brand-dark mb-3">실용적 가치</h4>
                               <p className="text-xs font-bold text-brand-brown mb-4 tracking-wide uppercase">"보이는 디자인이 아닌, 사용하는 디자인"</p>
-                              <p className="text-gray-600 font-light text-sm leading-7 text-justify">
+                              <p className="text-gray-600 font-light text-sm leading-7">
                                   고객의 생활 방식에 맞춰 효율적인 동선과 맞춤 기능을 설계합니다. 디에이치디자인은 공간을 일상의 무대로 완성합니다.
                               </p>
                           </div>
@@ -468,7 +469,7 @@ const About: React.FC = () => {
                               <TrendingUp className="w-8 h-8 text-brand-dark mb-6 stroke-1 group-hover:text-brand-brown transition-colors" />
                               <h4 className="text-xl font-bold text-brand-dark mb-3">경제적 가치</h4>
                               <p className="text-xs font-bold text-brand-brown mb-4 tracking-wide uppercase">"사는 집을 넘어, 가치가 오르는 집으로"</p>
-                              <p className="text-gray-600 font-light text-sm leading-7 text-justify">
+                              <p className="text-gray-600 font-light text-sm leading-7">
                                   프리미엄 디자인과 경제적 효율성을 함께 고려해, 공간의 자산 가치를 높이는 인테리어를 지향합니다.
                               </p>
                           </div>
@@ -478,7 +479,7 @@ const About: React.FC = () => {
                               <ShieldCheck className="w-8 h-8 text-brand-dark mb-6 stroke-1 group-hover:text-brand-brown transition-colors" />
                               <h4 className="text-xl font-bold text-brand-dark mb-3">신뢰적 가치</h4>
                               <p className="text-xs font-bold text-brand-brown mb-4 tracking-wide uppercase">"한 번의 계약이 아닌, 오래가는 관계"</p>
-                              <p className="text-gray-600 font-light text-sm leading-7 text-justify">
+                              <p className="text-gray-600 font-light text-sm leading-7">
                                   정직한 시공과 꼼꼼한 마감으로 고객과의 신뢰를 지킵니다. 디에이치디자인은 믿을 수 있는 동반자가 됩니다.
                               </p>
                           </div>
@@ -488,7 +489,7 @@ const About: React.FC = () => {
                               <Palette className="w-8 h-8 text-brand-dark mb-6 stroke-1 group-hover:text-brand-brown transition-colors" />
                               <h4 className="text-xl font-bold text-brand-dark mb-3">미적 가치</h4>
                               <p className="text-xs font-bold text-brand-brown mb-4 tracking-wide uppercase">"시간이 지나도 질리지 않는 감각"</p>
-                              <p className="text-gray-600 font-light text-sm leading-7 text-justify">
+                              <p className="text-gray-600 font-light text-sm leading-7">
                                   빛, 재료, 균형이 어우러진 절제된 디자인으로, 단순한 장식이 아닌 예술적 경험을 전합니다.
                               </p>
                           </div>
@@ -530,7 +531,7 @@ const About: React.FC = () => {
                   </h3>
 
                   {/* Body Text */}
-                  <div className="space-y-8 text-gray-600 font-light leading-loose text-base md:text-lg text-justify max-w-xl">
+                  <div className="space-y-8 text-gray-600 font-light leading-loose text-base md:text-lg max-w-xl">
                     <p>
                       설계자가 바뀌어도,<br/>
                       현장이 달라도,<br/>
@@ -558,7 +559,7 @@ const About: React.FC = () => {
                 <FadeIn delay="200ms">
                    <div className="relative w-full h-full flex items-center justify-center">
                       <LazyImage 
-                        src="https://i.postimg.cc/NjKFyd2J/THE-H.png" 
+                        src="/media/brand/about-theh.webp" 
                         alt="The H Team" 
                         className="w-full h-auto object-contain max-h-[80vh] grayscale transition-all duration-1000 ease-in-out hover:grayscale-0"
                         containerClassName="w-full h-full flex items-center justify-center"

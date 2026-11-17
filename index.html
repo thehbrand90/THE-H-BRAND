@@ -3,16 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>THE H BRAND</title>
-    
+
+    <title>(주)디에이치브랜드 THE H BRAND — 광주·전남 인테리어 디자인 & 빌드</title>
+    <meta
+      name="description"
+      content="THE H BRAND(주식회사 디에이치브랜드)는 실내건축공사업 면허를 보유한 광주·전남 Design & Build 시공 법인입니다. 설계부터 시공, 사후관리까지 기본에 충실한 정직한 시공으로 공간의 기준을 만듭니다."
+    />
+    <meta name="theme-color" content="#171614" />
+    <link rel="canonical" href="https://thehbrand.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="THE H BRAND" />
+    <meta property="og:title" content="THE H BRAND — 프리미엄 공간, 그 시작과 완성" />
+    <meta
+      property="og:description"
+      content="광주·전남 인테리어의 새로운 기준. 실내건축공사업 면허를 보유한 Design & Build 시공 법인, (주)디에이치브랜드."
+    />
+    <meta property="og:image" content="https://thehbrand.com/media/brand/hero-1280.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Montserrat & Noto Sans KR & Nanum Myeongjo & Playfair Display -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://exdhgwkudejynccxqdhm.supabase.co">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Myeongjo:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Fonts: Montserrat (display) · Pretendard (Korean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://exdhgwkudejynccxqdhm.supabase.co" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Noto+Sans+KR:wght@200;300;400;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Hero is the LCP element: preload the exact file the viewport will use -->
+    <link
+      rel="preload"
+      as="image"
+      media="(min-width: 768px)"
+      href="/media/brand/hero-1920.webp"
+      imagesrcset="/media/brand/hero-768.webp 768w, /media/brand/hero-1280.webp 1280w, /media/brand/hero-1920.webp 1920w"
+      imagesizes="100vw"
+    />
+    <link
+      rel="preload"
+      as="image"
+      media="(max-width: 767px)"
+      href="/media/brand/hero-mobile-941.webp"
+      imagesrcset="/media/brand/hero-mobile-600.webp 600w, /media/brand/hero-mobile-941.webp 941w"
+      imagesizes="100vw"
+    />
 
     <script>
       tailwind.config = {
@@ -20,78 +59,70 @@
           extend: {
             colors: {
               brand: {
-                bg: '#F5F3EF',    /* Warm Light Beige Base */
-                dark: '#262626',  /* Soft Black */
-                brown: '#563f38', /* Dark Coffee Brown Accent */
-                stone: '#E5E2DB', /* Secondary Warm Gray */
-                gray: '#888888',
-              }
+                bg: '#F4F1EC', /* warm ivory */
+                paper: '#FAF8F5', /* card / section white */
+                dark: '#171614', /* charcoal */
+                ink: '#221F1B',
+                clay: '#8B7862', /* taupe */
+                brown: '#4E3B2F', /* espresso */
+                stone: '#E4DED3',
+                line: '#DAD4C8',
+                gray: '#7A756D',
+              },
             },
             fontFamily: {
               montserrat: ['Montserrat', 'Noto Sans KR', 'sans-serif'],
-              sans: ['Montserrat', 'Noto Sans KR', 'sans-serif'],
-              serif: ['Playfair Display', 'Nanum Myeongjo', 'serif'],
+              sans: ['Noto Sans KR', 'Montserrat', 'sans-serif'],
+              serif: ['Playfair Display', 'Noto Sans KR', 'serif'],
+            },
+            letterSpacing: {
+              widest: '0.18em',
+              kicker: '0.32em',
             },
             animation: {
-              'subtle-zoom': 'subtle-zoom 30s ease-in-out infinite alternate',
-              'fade-in-up': 'fadeInUp 1s ease-out forwards',
-              'marquee': 'marquee 40s linear infinite',
+              'subtle-zoom': 'subtle-zoom 32s ease-in-out infinite alternate',
+              'fade-in-up': 'fadeInUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+              marquee: 'marquee 42s linear infinite',
+              'line-grow': 'lineGrow 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards',
             },
             keyframes: {
               'subtle-zoom': {
-                '0%': { transform: 'scale(1)' },
-                '100%': { transform: 'scale(1.15)' },
+                '0%': { transform: 'scale(1.02)' },
+                '100%': { transform: 'scale(1.1)' },
               },
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%': { opacity: '0', transform: 'translateY(26px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               },
               marquee: {
                 '0%': { transform: 'translateX(0%)' },
                 '100%': { transform: 'translateX(-50%)' },
-              }
-            }
-          }
+              },
+              lineGrow: {
+                '0%': { transform: 'scaleX(0)' },
+                '100%': { transform: 'scaleX(1)' },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+          "react/": "https://esm.sh/react@^19.2.3/",
+          "react": "https://esm.sh/react@^19.2.3",
+          "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+          "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
+          "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.90.1"
         }
       }
     </script>
-    <style>
-      body {
-        background-color: #F5F3EF;
-        font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
-        color: #262626;
-      }
-      /* Custom scrollbar for a premium feel */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #F5F3EF; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #563f38; 
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #262626; 
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
-    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.90.1"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body>
+  </head>
+  <body class="bg-brand-bg text-brand-ink antialiased">
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

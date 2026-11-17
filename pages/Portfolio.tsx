@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
 import LazyImage from '../components/LazyImage';
+import { ArrowUpRight } from 'lucide-react';
 
 const { Link } = ReactRouterDOM;
 
@@ -23,7 +24,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완지구 대방노블랜드 1단지',
     year: '2026',
     py: '34PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/sw_dbmain.webp',
+    image: '/media/projects/p26-sw_dbmain-1600.webp',
     category: '30PY',
     description: "아이보리와 라이트 그레이 톤을 중심으로 면과 선을 정돈해, 밝고 차분한 개방감을 담아낸 34평형 프로젝트입니다. 현관부터 이어지는 긴 수납 벽과 절제된 라인 조명은 공간의 흐름을 매끄럽게 연결하고, 생활에 필요한 기능은 최대한 단정한 형태 안에 담았습니다. 주방은 화이트 톤의 아일랜드와 은은한 스톤 패턴 벽면을 조화시켜 미니멀한 인상 속에서도 깊이와 고급스러움을 더했습니다. 장식보다 비례와 수납, 빛의 균형에 집중해 실제 생활이 편안한 정제된 주거 공간으로 완성했습니다.",
     meta: [
@@ -31,7 +32,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "34py" },
       { label: "YEAR", value: "2026" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/sw_db001.webp",
@@ -88,7 +89,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 해솔마을 현진에버빌 1단지',
     year: '2026',
     py: '43PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/suwan_hjmain.webp',
+    image: '/media/projects/p25-suwan_hjmain-1600.webp',
     category: '40PY',
     description: "다크 우드와 밝은 그레이 톤의 조화로 차분한 깊이를 담아낸 공간입니다.\n\n불필요한 장식을 덜어내고 빛과 면, 소재의 연결감을 중심으로 집 전체의 흐름을 정리했습니다.\n\n공간 곳곳에는 생활 동선을 고려한 맞춤 수납과 가구를 계획해 절제된 디자인과 실용성이 자연스럽게 공존하는 주거 공간을 완성했습니다.",
     meta: [
@@ -96,7 +97,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "142㎡ / 43py" },
       { label: "YEAR", value: "2026" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       ...Array.from(
@@ -115,7 +116,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '금호동 종원펠리스빌',
     year: '2026',
     py: '36PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/kjmain.webp',
+    image: '/media/projects/p24-kjmain-1600.webp',
     category: '30PY',
     description: "금호동 종원펠리스빌 36평형 현장은 모던함과 미니멀리즘이 공존하는 공간입니다. 불필요한 장식을 덜어내고 면과 선의 정갈함을 강조하여 공간 본연의 가치를 드러냈습니다. 내추럴한 우드 톤과 차분한 그레이 베이스의 조화는 일상의 편안함을 더해주며, 효율적인 수납 설계와 동선 배치를 통해 거주자의 편의를 극대화했습니다. 단순함을 넘어선 정교한 디테일이 살아있는 하이엔드 주거 공간입니다.",
     meta: [
@@ -123,7 +124,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "119m² / 36py" },
       { label: "YEAR", value: "2026" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/kj001.webp",
@@ -171,7 +172,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '화정동 힐스테이트 3단지',
     year: '2026',
     py: '40PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/hai1.webp',
+    image: '/media/projects/p23-hai1-1600.webp',
     category: '40PY',
     description: "화정동 힐스테이트 3단지 40평형 현장은 클래식한 우아함과 현대적인 미학이 완벽하게 조화를 이루는 공간입니다. 부드러운 소재와 정교하게 다듬어진 선들이 만들어내는 리듬감은 공간에 깊이를 더하며, 풍부한 채광을 담아내는 화이트 뉴트럴 톤의 베이스는 더욱 넓고 쾌적한 개방감을 선사합니다. 단순한 주거 공간을 넘어, 삶의 영감을 자극하는 갤러리 같은 무드를 담았습니다.",
     meta: [
@@ -179,7 +180,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "132m² / 40py" },
       { label: "YEAR", value: "2026" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/hai1.webp",
@@ -218,7 +219,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '진월지구 남양휴튼',
     year: '2026',
     py: '43PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/nodae.webp',
+    image: '/media/projects/p22-nodae-1600.webp',
     category: '40PY',
     description: "진월지구 남양휴튼 43평형 인테리어 프로젝트입니다. 고객님의 라이프스타일을 반영하여 고급스럽고 세련된 공간으로 완성했습니다.",
     meta: [
@@ -226,7 +227,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "144m² / 43py" },
       { label: "YEAR", value: "2026" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/nd_001.webp",
@@ -277,7 +278,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '봉선동 제일풍경채',
     year: '2026',
     py: '33PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/bongpong_p.webp',
+    image: '/media/projects/p20-bongpong_p-1600.webp',
     category: '30PY',
     description: "미니멀 하이엔드의 정석을 보여주는 30평대 현장입니다. 공간 전체를 아우르는 이지적인 쿨톤 베이스로 시각적 개방감을 극대화하고, 곳곳에 정교하게 설계된 우드 포인트를 더해 하이엔드 특유의 깊이감을 완성했습니다. 톤 정리가 완벽한 캔버스 위에 고객의 센스가 돋보이는 가구와 그림이 배치되어, 시간이 흘러도 질리지 않는 트렌디한 무드를 선사합니다.",
     meta: [
@@ -285,7 +286,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "114B / 33py" },
       { label: "YEAR", value: "2026" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/bp001.webp",
@@ -329,7 +330,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '금호동 호반5차',
     year: '2025',
     py: '35PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/kh_profile.webp',
+    image: '/media/projects/p21-kh_profile-1600.webp',
     category: '30PY',
     description: "금호동 호반5차 프로젝트는 35평형의 공간을 가장 효율적이고 감각적으로 풀어낸 현장입니다. 따뜻한 베이지 톤을 베이스로 하여 아늑함을 강조하면서도, 간결한 라인 정리로 모던한 엣지를 놓치지 않았습니다. 일상의 편안함이 머무는 공간, 디에이치브랜드만의 섬세한 디테일로 완성했습니다.",
     meta: [
@@ -337,7 +338,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "116m² / 35py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/kh025.webp",
@@ -370,7 +371,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 성덕마을 대방3차',
     year: '2025',
     py: '50PY',
-    image: 'https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/pb2.png',
+    image: '/media/projects/p18-pb2-1600.webp',
     category: '50PY',
     description: "하이엔드 인테리어의 정석적인 모습을 보여주는 수완 대방3차 현장입니다. 완벽하게 톤이 정리된 화이트 뉴트럴 베이스는 그 자체로 훌륭한 캔버스가 되어줍니다. 여기에 고객님의 남다른 센스가 돋보이는 가구와 그림 배치가 더해져, 시간이 지나도 질리지 않는 트렌디함을 완성했습니다. 비움으로써 오히려 풍성해지는 미니멀 럭셔리의 가치를 이 공간에 담았습니다.",
     meta: [
@@ -378,7 +379,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "165m² / 50py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://exdhgwkudejynccxqdhm.supabase.co/storage/v1/object/public/PORTFOLIO/wh001.webp",
@@ -429,7 +430,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 새한포유',
     year: '2025',
     py: '36PY',
-    image: 'https://i.postimg.cc/1RLkK4L8/peulpil.png',
+    image: '/media/projects/p15-peulpil-1600.webp',
     category: '30PY',
     description: "수완 새한포유 | Woody & Lovely Home 나무의 따뜻함과 사랑스러운 디테일이 만난 집. 아치형 선반, 원목 다이닝, 그리고 감각적인 소품들이 어우러져 세상에서 가장 포근한 공간을 만들었습니다. '우디크 러블리' 감성 가득한 일상 속 행복을 느껴보세요.",
     meta: [
@@ -437,7 +438,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "120m² / 36py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/WzFP1kCf/001.jpg",
@@ -503,7 +504,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '노대동 송화레이크힐',
     year: '2025',
     py: '33PY',
-    image: 'https://i.postimg.cc/Pxx6RWmz/nosong.png',
+    image: '/media/projects/p12-nosong-1600.webp',
     category: '30PY',
     description: "공간의 화사함과 원목 가구가 주는 편안함이 조화롭게 어우러진 현장입니다. 거실과 주방 곳곳에 배치된 원목 아이템들은 차분한 공간에 생동감을 불어넣으며 가구 그 이상의 오브제 역할을 합니다. 시각적 노이즈를 최소화한 면 정리와 정교한 조명 설계가 더해져, 가구 하나하나의 결이 살아나는 감각적인 주거 공간을 완성했습니다.",
     meta: [
@@ -511,7 +512,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "111m² / 33py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/7LgDLycF/001.jpg",
@@ -546,7 +547,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 영무예다음1차',
     year: '2025',
     py: '33PY',
-    image: 'https://i.postimg.cc/6q2TPj6q/suwan-yeongmu.png',
+    image: '/media/projects/p14-suwan-yeongmu-1600.webp',
     category: '30PY',
     description: "공간의 가치를 결정짓는 소재와 구조의 힘을 보여주는 프로젝트입니다. 거실 전면에 적용된 대리석 마감은 공간에 깊이감 있는 웅장함을 부여하고, 완전히 달라진 주방 레이아웃은 평수 그 이상의 와이드한 시야를 선사합니다. 소재의 고급스러움과 공간의 효율성이 완벽한 균형을 이루는 현장입니다.",
     meta: [
@@ -554,7 +555,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "117m² / 33py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/wvPhfb8P/030.jpg",
@@ -593,7 +594,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 우미린1차',
     year: '2025',
     py: '33PY',
-    image: 'https://i.postimg.cc/d3gc0vMN/suwan-umilin1cha.png',
+    image: '/media/projects/p16-suwan-umilin1cha-1600.webp',
     category: '30PY',
     description: "차가운 세련미와 묵직한 온기가 공존하는 수완 우미린 1차입니다. 거실의 쿨톤 대리석 마감이 주는 도시적인 무드 속에, 주방 전면을 채운 다크우드 텍스처가 시선을 한순간에 압도합니다. 자칫 차가울 수 있는 쿨톤 베이스에 딥한 우드 톤을 과감하게 매치하여, 하이엔드 주거 공간에서만 느낄 수 있는 독보적인 웅장함과 깊이감을 구현했습니다.",
     meta: [
@@ -601,7 +602,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "113m² / 33py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/d3gc0vMN/suwan-umilin1cha.png"
@@ -612,7 +613,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 중흥s클래스 1차',
     year: '2025',
     py: '36PY',
-    image: 'https://i.postimg.cc/htWb9wcy/sujungpeulpil.png',
+    image: '/media/projects/p17-sujungpeulpil-1600.webp',
     category: '30PY',
     description: "군더더기 없는 쿨톤의 베이스로 시각적 개방감과 세련미를 동시에 잡은 수완 중흥 1차 현장입니다. 차가운 듯 정갈한 화이트&그레이 톤앤매너는 공간을 더욱 넓고 깊이 있게 만들어주며, 직선적인 라인 정리와 매끄러운 면 처리가 어우러져 현대적인 감각을 완성합니다. 불필요한 색채를 덜어내고 빛과 여백으로 채운, 미니멀 럭셔리의 정석을 보여주는 공간입니다.",
     meta: [
@@ -620,7 +621,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "122m² / 36py" },
       { label: "YEAR", value: "2025" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/26hCBVwT/sujung1.png",
@@ -640,7 +641,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '운림동 무등파크2차',
     year: '2024',
     py: '49PY',
-    image: 'https://i.postimg.cc/SsBmT6T5/unlimpofile.png',
+    image: '/media/projects/p6-unlimpofile-1600.webp',
     category: '40PY',
     description: "49평형의 광활한 공간감을 대담한 면 분할과 깊이 있는 질감으로 풀어낸 운림동 무등파크입니다. 거실 전면을 채운 딥 우드 월(Wood Wall)은 공간의 중심을 잡아주며 시각적인 웅장함을 선사합니다. 장식을 최소화하고 빛과 소재의 대비에 집중하여, 시간이 흘러도 질리지 않는 프리미엄 주거의 가치를 담았습니다.",
     meta: [
@@ -648,7 +649,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "162m² / 49py" },
       { label: "YEAR", value: "2024" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/gJkzLcwX/022.jpg",
@@ -693,7 +694,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '봉선동 광명메이루즈',
     year: '2024',
     py: '34PY',
-    image: 'https://i.postimg.cc/mrP2Gv2z/bongseondong-gwangmyeong.png',
+    image: '/media/projects/p7-bongseondong-gwangmyeong-1600.webp',
     category: '30PY',
     description: "구조가 가진 개성을 디자인으로 승화시킨 감각적인 현장입니다. 자칫 까다로울 수 있는 특이한 구조를 영리하게 활용하여 훨씬 더 입체적이고 아늑한 무드를 연출했습니다. 거실을 감싸는 묵직한 우드 텍스처와 독특한 레이아웃이 만나 갤러리 같은 세련미와 집 본연의 편안함을 모두 잡은 새로운 제안입니다.",
     meta: [
@@ -701,7 +702,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "114m² / 34py" },
       { label: "YEAR", value: "2024" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/QxgDGXQT/021.jpg",
@@ -747,7 +748,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '첨단2지구 한양수자인',
     year: '2024',
     py: '25PY',
-    image: 'https://i.postimg.cc/J0DFqW8g/cheom2han-yang.png',
+    image: '/media/projects/p8-cheom2han-yang-1600.webp',
     category: '20PY',
     description: "비움의 미학 속에 사용자의 취향을 채운 컨셉. 특색 있는 레이아웃을 영리하게 활용하여 독립적이면서도 연결된 아늑한 공간감을 구현했습니다. 섬세하게 제작된 우드 가구들은 공간의 구조적 특징과 완벽하게 맞물리며, 미니멀리즘이 주는 평온함 속에 거주자만의 감각적인 라이프스타일을 녹여낸 프로젝트입니다.",
     meta: [
@@ -755,7 +756,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "84A / 25py" },
       { label: "YEAR", value: "2024" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/Mp8Ly4FD/030.jpg",
@@ -808,7 +809,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '일곡동 현대3차',
     year: '2024',
     py: '32PY',
-    image: 'https://i.postimg.cc/13Qqsc89/omognun-i.png',
+    image: '/media/projects/p9-omognun-i-1600.webp',
     category: '30PY',
     description: "오래된 구축의 틀을 깨고, 요즘 가장 사랑받는 아이보리 뉴트럴 톤으로 새롭게 태어난 일곡동 현대 24평입니다. 공간 전체를 감싸는 부드러운 컬러감은 유행을 타지 않으면서도 세련된 무드를 유지하는 모두가 선호하는 트렌디한 주거 공간컨셉입니다.",
     meta: [
@@ -816,7 +817,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "107m² / 32py" },
       { label: "YEAR", value: "2024" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/mkBwcfDT/001.jpg",
@@ -846,7 +847,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 대주피오레 1단지',
     year: '2024',
     py: '39PY',
-    image: 'https://i.postimg.cc/C1ZYYgw9/sudae1.png',
+    image: '/media/projects/p10-sudae1-1600.webp',
     category: '30PY',
     description: "선적인 미니멀리즘과 차분한 컬러 팔레트가 어우러진 주방 설계입니다. 거대한 아일랜드를 전면에 배치하여 호텔 라운지 같은 고급스러운 무드를 연출했습니다. 군더더기 없는 면 정리와 매립 조명의 섬세한 조화를 통해, 유행을 타지 않는 정갈하고 모던한 주거 톤을 완성한 수완대주피오레 1단지 현장입니다",
     meta: [
@@ -854,7 +855,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "132m² C-Type / 39py" },
       { label: "YEAR", value: "2024" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/bNVG9zss/004.jpg",
@@ -905,7 +906,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '봉선동 포스코더샵',
     year: '2024',
     py: '55PY',
-    image: 'https://i.postimg.cc/hPgm4SYv/bongpo55.png',
+    image: '/media/projects/p11-bongpo55-1600.webp',
     category: '50PY',
     description: "공간의 본질에 집중하여 시간이 지나도 변치 않는 가치를 담은 봉선동 포스코더샵입니다. 복잡한 장식 대신 정교한 선의 미학을 활용하여 주거 공간을 갤러리처럼 연출했습니다. 차분하게 가라앉은 톤앤매너는 일상에 깊은 안식과 평온을 제공합니다.",
     meta: [
@@ -913,7 +914,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "182m² / 55py" },
       { label: "YEAR", value: "2024" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/v8r2TZ0d/001.jpg",
@@ -944,7 +945,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 성덕마을 대방3차(옥탑)',
     year: '2023',
     py: '50PY',
-    image: 'https://i.postimg.cc/sg2Crh9g/sudae3.png',
+    image: '/media/projects/p13-sudae3-1600.webp',
     category: '50PY',
     description: "최상층 옥탑만이 가질 수 있는 독보적인 구조미를 살린 수완 성덕마을 대방3차 현장입니다. 높은 층고를 따라 흐르는 깔끔한 라인과 우드&화이트의 정교한 균형은 주거 공간을 넘어선 갤러리 같은 무드를 선사합니다. 절제된 디자인 속에 수납 디테일을 녹여내어, 일상의 복잡함은 덜어내고 옥탑 공간의 낭만과 품격만을 남겼습니다.",
     meta: [
@@ -952,7 +953,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "165m² / 50py" },
       { label: "YEAR", value: "2023" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/8zxK0Jyp/001.jpg",
@@ -1006,7 +1007,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 성덕마을 대방3차',
     year: '2023',
     py: '50PY',
-    image: 'https://i.postimg.cc/MHYhd4VN/Chat-GPT-Image-2026nyeon-2wol-2il-ojeon-10-50-09.png',
+    image: '/media/projects/p1-Chat-GPT-Image-2026nyeon-2wol-2il-ojeon-10-50-09-1600.webp',
     category: '50PY',
     description: "우드와 화이트의 정교한 균형으로 고급스러운 주거 톤을 완성한 수완 성덕마을 대방3차 프로젝트입니다. 아이들의 놀이 공간을 집 전체의 흐름 속에 자연스럽게 녹여내었으며, 간결한 라인과 세심한 수납 디테일을 더해 일상의 편리함과 공간의 품격을 동시에 담았습니다.",
     meta: [
@@ -1014,7 +1015,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "165m² / 50py" },
       { label: "YEAR", value: "2023" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/fWvp4G0w/003.jpg",
@@ -1065,7 +1066,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '수완 대주피오레 1단지',
     year: '2023',
     py: '39PY',
-    image: 'https://i.postimg.cc/Hx0yv4nn/image-Dp2.png',
+    image: '/media/projects/p2-image-Dp2-1600.webp',
     category: '30PY',
     description: "화이트의 깨끗함과 우드의 무게감이 조화롭게 맞닿은 수완 대주피오레 현장입니다. 군더더기 없는 면 정리와 매립 조명의 섬세한 설계로 주방의 품격을 높였습니다. 특히 직선의 미학이 돋보이는 가구 라인은 일상을 더욱 정돈된 느낌으로 만들어 줍니다.",
     meta: [
@@ -1073,7 +1074,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "132m² / 39py" },
       { label: "YEAR", value: "2023" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/v8gRnq4N/015.jpg",
@@ -1120,7 +1121,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '운암동 블루시안2차',
     year: '2023',
     py: '33PY',
-    image: 'https://i.postimg.cc/76858BQd/image-Dp3.png',
+    image: '/media/projects/p3-image-Dp3-1600.webp',
     category: '30PY',
     description: "차분하게 가라앉은 톤 위로 간결한 선의 미학을 담아낸 운암 벽산블루밍 프로젝트입니다. 공간 전체를 가로지르는 마그네틱 조명을 포인트로 활용하여 리듬감 있는 시각적 흐름을 완성했습니다. 불필요한 장식은 덜어내고, 빛과 라인만으로 모던한 주거의 품격을 정의합니다.",
     meta: [
@@ -1128,7 +1129,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "108m² / 33py" },
       { label: "YEAR", value: "2023" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/xTyysmqJ/029.jpg",
@@ -1166,7 +1167,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '봉선동 포스코더샵',
     year: '2023',
     py: '26PY',
-    image: 'https://i.postimg.cc/8PJscgQ4/bongpo26.png',
+    image: '/media/projects/p4-bongpo26-1600.webp',
     category: '20PY',
     description: "창밖으로 보이는 초록빛 풍경이 인테리어의 완성도가 되는 곳. 봉선동 포스코의 거실은 자연광을 가득 머금은 화이트 톤과 묵직한 우드 가구가 만나 차분한 안정감을 줍니다. 계절의 변화를 일상에서 가장 가깝게 느낄 수 있도록 가구 배치와 톤앤매너를 섬세하게 조율하여, 머무는 것만으로도 힐링이 되는 주거 공간을 완성했습니다",
     meta: [
@@ -1174,7 +1175,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "86m² / 26py" },
       { label: "YEAR", value: "2023" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/k5xb43SL/003.jpg",
@@ -1203,7 +1204,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '나주 빛가람동 우미린',
     year: '2023',
     py: '29PY',
-    image: 'https://i.postimg.cc/W4qtb1kJ/proflie(naju).png',
+    image: '/media/projects/p5-proflienaju-1600.webp',
     category: '20PY',
     description: "취향이 깃든 공간의 가치 우드 홈바와 안방 캠핑 테라스 등 고객의 라이프스타일을 공간의 흐름 안에 자연스럽게 녹여내었으며, 깔끔한 수납 디테일과 감각적인 공간 활용을 통해 일상에 즐거움을 더하는 29평 인테리어의 해답을 제시합니다.",
     meta: [
@@ -1211,7 +1212,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "99m² / 29py" },
       { label: "YEAR", value: "2023" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." }
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." }
     ],
     images: [
       "https://i.postimg.cc/dt0sV0MJ/008.jpg",
@@ -1255,7 +1256,7 @@ export const mockProjects: PortfolioItem[] = [
     title: '무진로 진아리채',
     year: '2022',
     py: '42PY',
-    image: 'https://i.postimg.cc/mD6wBdv6/mua.png',
+    image: '/media/projects/p19-mua-1600.webp',
     category: '40PY',
     description: "무진로 진아리채 프로젝트는 공간의 여백을 살린 미니멀리즘과 실용적인 동선 설계가 돋보이는 현장입니다. 42평형의 넓은 공간감을 극대화하기 위해 화이트 베이스에 절제된 조명 계획을 적용하였으며, 고객의 라이프스타일을 반영한 맞춤 가구 제작으로 수납 효율과 심미성을 동시에 높였습니다. 군더더기 없는 마감과 차분한 톤앤매너가 어우러져 편안하고 고급스러운 주거 분위기를 선사합니다.",
     meta: [
@@ -1263,7 +1264,7 @@ export const mockProjects: PortfolioItem[] = [
       { label: "TYPE", value: "Residential" },
       { label: "AREA", value: "141m² / 42py" },
       { label: "YEAR", value: "2022" },
-      { label: "DESIGN", value: "THE H BRAND co.,Ltd." },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
     ],
     images: [
       "https://i.postimg.cc/Hk2vFtkF/059.jpg",
@@ -1296,74 +1297,132 @@ export const mockProjects: PortfolioItem[] = [
   }
 ];
 
+/**
+ * Grid/card images are stored locally in two widths (800w, 1600w) so the
+ * portfolio index no longer downloads ~20 MB of PNGs. `image` holds the
+ * 1600w file; the 800w sibling is derived for small viewports.
+ */
+export const responsiveImage = (path: string) => {
+  if (path.includes('-1600.webp')) {
+    return {
+      src: path,
+      srcSet: `${path.replace('-1600.webp', '-800.webp')} 800w, ${path} 1600w`,
+    };
+  }
+  return { src: path, srcSet: undefined };
+};
+
 const categories = ['ALL', '20PY', '30PY', '40PY', '50PY', 'ETC'];
 
 const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState('ALL');
 
-  const filteredProjects = filter === 'ALL' 
-    ? mockProjects 
-    : mockProjects.filter(p => p.category === filter);
+  const filteredProjects =
+    filter === 'ALL' ? mockProjects : mockProjects.filter((p) => p.category === filter);
 
   return (
-    <div className="pt-32 pb-20 px-4 md:px-10 min-h-screen bg-white">
-      <div className="max-w-[1800px] mx-auto">
-        
-        {/* Header & Filter */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 px-2">
-          <div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-brand-dark">PORTFOLIO</h1>
-            <p className="text-gray-500">Premium spaces crafted by THE H BRAND.</p>
-          </div>
-          
-          <div className="flex space-x-6 mt-8 md:mt-0 overflow-x-auto pb-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`text-sm uppercase tracking-widest transition-colors whitespace-nowrap ${filter === cat ? 'text-brand-brown font-bold border-b border-brand-brown' : 'text-gray-400 hover:text-brand-dark'}`}
-              >
-                {cat}
-              </button>
-            ))}
+    <div className="w-full min-h-screen bg-brand-bg">
+      {/* Header */}
+      <div className="border-b border-brand-line/60">
+        <div className="max-w-[1800px] mx-auto px-5 md:px-10 lg:px-14 pt-32 md:pt-40 pb-10 md:pb-14">
+          <p className="font-montserrat text-[10px] tracking-[0.32em] text-brand-clay mb-6">
+            PORTFOLIO
+          </p>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div>
+              <h1 className="text-display-xl text-brand-ink">Selected Works</h1>
+              <p className="mt-6 text-sm md:text-base font-light text-brand-gray max-w-xl leading-relaxed break-keep-all">
+                광주·전남에서 완성한 주거 공간들. 면과 선, 빛과 재료의 균형으로 완성한 THE H
+                BRAND의 프로젝트입니다.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-1.5 md:gap-2 overflow-x-auto hide-scrollbar pb-1">
+              {categories.map((cat) => {
+                const active = filter === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setFilter(cat)}
+                    aria-pressed={active}
+                    className={`shrink-0 font-montserrat text-[10px] tracking-[0.18em] px-4 py-2.5 border transition-all duration-300 ${
+                      active
+                        ? 'bg-brand-dark border-brand-dark text-brand-bg'
+                        : 'border-brand-line text-brand-gray hover:border-brand-dark hover:text-brand-ink'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* 4-Column Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
-          {filteredProjects.map((project) => (
-            <Link 
-              key={project.id}
-              to={`/portfolio/${project.id}`} 
-              className="group block cursor-pointer"
-            >
-              {/* Image Container - Vertical Aspect Ratio 3:4 */}
-              <div className="aspect-[3/4] relative mb-5">
-                <LazyImage 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  containerClassName="w-full h-full bg-gray-100"
-                />
-              </div>
+      {/* Grid */}
+      <div className="max-w-[1800px] mx-auto px-5 md:px-10 lg:px-14 py-12 md:py-20">
+        <div className="flex items-center justify-between mb-8 md:mb-12">
+          <p className="font-montserrat text-[10px] tracking-[0.22em] text-brand-gray">
+            {filteredProjects.length} PROJECTS
+          </p>
+          <p className="hidden md:block font-montserrat text-[10px] tracking-[0.22em] text-brand-gray">
+            {filter === 'ALL' ? 'ALL SIZE' : filter}
+          </p>
+        </div>
 
-              {/* Info Bar */}
-              <div className="flex justify-between items-start border-t border-transparent pt-1">
-                <div className="flex flex-col pr-4">
-                  <span className="text-brand-dark font-bold text-sm md:text-base mb-1 leading-tight group-hover:text-brand-brown transition-colors">
-                    {project.title}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-12 md:gap-y-16">
+          {filteredProjects.map((project, index) => {
+            const img = responsiveImage(project.image);
+            return (
+              <Link
+                key={project.id}
+                to={`/portfolio/${project.id}`}
+                className="group block"
+                aria-label={`${project.title} 프로젝트 보기`}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-brand-stone/50">
+                  <LazyImage
+                    src={img.src}
+                    srcSet={img.srcSet}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                    containerClassName="w-full h-full"
+                    priority={index < 4}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute top-4 left-4 font-montserrat text-[9px] tracking-[0.2em] text-white/75 mix-blend-difference">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-gray-400 text-xs font-light tracking-wide">
-                    {project.year}
+                  <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-brand-dark opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                    <ArrowUpRight size={14} />
                   </span>
                 </div>
-                <span className="text-brand-dark text-sm font-medium tracking-wide whitespace-nowrap">
-                  {project.py}
-                </span>
-              </div>
-            </Link>
-          ))}
+
+                <div className="mt-4 flex items-start justify-between gap-4 border-t border-brand-line/70 pt-4">
+                  <div className="min-w-0">
+                    <h2 className="text-[15px] font-medium text-brand-ink leading-snug group-hover:text-brand-clay transition-colors">
+                      {project.title}
+                    </h2>
+                    <p className="mt-1.5 font-montserrat text-[10px] tracking-[0.16em] text-brand-gray">
+                      {project.year} · {project.category}
+                    </p>
+                  </div>
+                  <span className="font-montserrat text-[11px] tracking-[0.12em] text-brand-ink/70 whitespace-nowrap">
+                    {project.py}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
+
+        {filteredProjects.length === 0 && (
+          <p className="py-24 text-center text-sm text-brand-gray font-light">
+            해당 평형의 프로젝트가 아직 없습니다.
+          </p>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,271 @@
+/* THE H BRAND — base layer
+   Loaded once from index.tsx, after the Tailwind CDN runtime. */
+
+:root {
+  --brand-bg: #f4f1ec;
+  --brand-dark: #171614;
+  --brand-clay: #8b7862;
+  --brand-line: #dad4c8;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Fluid display sizes used across sections */
+  --display-xl: clamp(2.6rem, 7vw, 6.5rem);
+  --display-lg: clamp(2rem, 4.4vw, 3.9rem);
+  --display-md: clamp(1.5rem, 2.6vw, 2.5rem);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--brand-bg);
+  color: var(--brand-dark);
+  font-family: 'Noto Sans KR', 'Montserrat', sans-serif;
+  font-feature-settings: 'kern' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--brand-dark);
+  color: var(--brand-bg);
+}
+
+/* Slim, warm scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--brand-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c0b2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-clay);
+}
+
+/* ---------- Type helpers ---------- */
+.font-display {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.kicker {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.text-display-xl {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: var(--display-xl);
+  line-height: 0.98;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.text-display-lg {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: var(--display-lg);
+  line-height: 1.06;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.text-display-md {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: var(--display-md);
+  line-height: 1.15;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.break-keep-all {
+  word-break: keep-all;
+}
+
+/* ---------- Links & buttons ---------- */
+.link-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-soft);
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2.1rem;
+  background: var(--brand-dark);
+  color: #fff;
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background 0.4s var(--ease-out-soft), color 0.4s var(--ease-out-soft),
+    transform 0.4s var(--ease-out-soft);
+}
+.btn-primary:hover {
+  background: var(--brand-clay);
+  transform: translateY(-2px);
+}
+
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  transition: background 0.4s var(--ease-out-soft), border-color 0.4s var(--ease-out-soft),
+    color 0.4s var(--ease-out-soft);
+}
+.btn-ghost-light:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--brand-dark);
+}
+
+/* ---------- Marquee strip ---------- */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: brand-marquee 48s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes brand-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero-zoom {
+  animation: hero-zoom 34s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.015);
+  }
+  to {
+    transform: scale(1.085);
+  }
+}
+
+.hero-fade {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: hero-fade 1.2s var(--ease-out-soft) forwards;
+}
+@keyframes hero-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: hero-line 1.4s var(--ease-out-soft) 0.35s forwards;
+}
+@keyframes hero-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s var(--ease-out-soft), transform 1s var(--ease-out-soft);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Misc ---------- */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-zoom,
+  .marquee,
+  .hero-fade,
+  .hero-line,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Tailwind CDN injects its utilities after this file in <head>;
+   keep a few overrides below so they win on equal specificity. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brand-clay);
+  outline-offset: 3px;
+}

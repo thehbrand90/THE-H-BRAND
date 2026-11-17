@@ -121,25 +121,25 @@ const PortfolioDetail: React.FC = () => {
         <div className="flex flex-col md:flex-row w-full max-w-[2000px] mx-auto">
           
           {/* 1. LEFT COLUMN: Project Info (20%) - Sticky */}
-          <div className="hidden md:block w-[20%] h-[calc(100vh-6rem)] sticky top-24 pl-8 lg:pl-12 pr-4 overflow-y-auto hide-scrollbar">
+          <div className="hidden md:block w-[22%] h-[calc(100vh-6rem)] sticky top-24 pl-8 lg:pl-12 pr-6 overflow-y-auto hide-scrollbar">
               <div className="mb-12">
                  <Link 
                     to="/portfolio" 
-                    className="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-dark transition-colors mb-8 group"
+                    className="inline-flex items-center font-montserrat text-[9px] font-medium uppercase tracking-[0.24em] text-brand-gray hover:text-brand-ink transition-colors mb-8 group"
                   >
                     <ArrowLeft className="mr-2 w-3 h-3 transition-transform group-hover:-translate-x-1" /> Back
                   </Link>
-                  <h1 className="text-xl lg:text-2xl font-bold text-brand-dark mb-8 leading-snug break-keep">
+                  <h1 className="text-xl lg:text-[26px] font-light text-brand-ink mb-8 leading-snug break-keep-all">
                       {project.title}
                   </h1>
                   
                   <div className="space-y-6">
                       {displayMeta.map((item, idx) => (
                           <div key={idx} className="flex flex-col border-b border-gray-100 pb-2">
-                              <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
+                              <span className="font-montserrat text-[9px] font-medium uppercase tracking-[0.22em] text-brand-gray/70 mb-1">
                                   {item.label}
                               </span>
-                              <span className="text-sm font-medium text-brand-dark">
+                              <span className="text-[13.5px] font-medium text-brand-ink">
                                   {item.value}
                               </span>
                           </div>
@@ -147,7 +147,7 @@ const PortfolioDetail: React.FC = () => {
                   </div>
 
                   <div className="mt-12">
-                      <p className="text-sm text-gray-600 font-light leading-relaxed whitespace-pre-wrap">
+                      <p className="text-[13px] text-brand-gray font-light leading-[1.85] whitespace-pre-wrap break-keep-all">
                           {project.description || "상세 설명이 준비 중입니다."}
                       </p>
                   </div>
@@ -178,7 +178,7 @@ const PortfolioDetail: React.FC = () => {
           </div>
 
           {/* 2. CENTER COLUMN: Images (65%) */}
-          <div className="w-full md:w-[65%] px-0 md:px-4 flex flex-col gap-4 md:gap-32 pb-20">
+          <div className="w-full md:flex-1 px-0 md:px-4 flex flex-col gap-4 md:gap-28 pb-20">
               {displayImages.map((img, index) => (
                   <div 
                       key={index} 
@@ -203,8 +203,8 @@ const PortfolioDetail: React.FC = () => {
 
           {/* 3. RIGHT COLUMN: Thumbnails (15%) - Sticky */}
           {displayImages.length > 1 && (
-            <div className="hidden md:flex w-[15%] h-[calc(100vh-6rem)] sticky top-24 flex-col items-center overflow-y-auto px-4 hide-scrollbar">
-                <div className="flex flex-col gap-3 py-4 w-full max-w-[100px]">
+            <div className="hidden md:flex w-[13%] max-w-[120px] h-[calc(100vh-6rem)] sticky top-24 flex-col items-center overflow-y-auto pl-2 pr-6 hide-scrollbar">
+                <div className="flex flex-col gap-3 py-4 w-full max-w-[88px]">
                     {displayImages.map((img, index) => (
                         <button
                             key={index}
