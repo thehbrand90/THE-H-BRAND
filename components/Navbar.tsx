@@ -118,7 +118,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile full-screen menu */}
       <div
-        className={`fixed inset-0 z-50 md:hidden bg-brand-bg transition-all duration-500 ${
+        className={`fixed inset-0 z-40 md:hidden bg-brand-bg transition-all duration-500 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         style={{ height: '100dvh' }}
