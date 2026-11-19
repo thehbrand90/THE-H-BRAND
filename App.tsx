@@ -15,6 +15,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import Bio from './pages/Bio';
 import FloatingContact from './components/FloatingContact';
 
 const { HashRouter: Router, Routes, Route, useLocation } = ReactRouterDOM;
@@ -28,10 +29,16 @@ const ScrollToTop = () => {
   return null;
 };
 
-const App: React.FC = () => {
+// /bio is a standalone link-in-bio landing page: no navbar, footer or
+// floating contact rail around it.
+const AppShell: React.FC = () => {
+  const { pathname } = useLocation();
+  const isBio = pathname === '/bio' || pathname === '/bio/';
+
+  if (isBio) return <Bio />;
+
   return (
-    <Router>
-      <ScrollToTop />
+    <>
       <FloatingContact />
       <div className="flex flex-col min-h-screen font-montserrat text-brand-dark bg-brand-bg">
         <Navbar />
@@ -54,6 +61,15 @@ const App: React.FC = () => {
         </main>
         <Footer />
       </div>
+    </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <ScrollToTop />
+      <AppShell />
     </Router>
   );
 };

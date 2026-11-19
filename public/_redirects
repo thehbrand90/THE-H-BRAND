@@ -1,0 +1,5 @@
+# thehbrand.com/bio — link-in-bio deep link
+# The app is a HashRouter SPA, so its real route is /#/bio. Serve the app shell
+# for the bare path; the inline redirect in index.html then moves it to the hash.
+/bio      /index.html   200
+/bio/     /index.html   200

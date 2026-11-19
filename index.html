@@ -12,6 +12,17 @@
     <meta name="theme-color" content="#171614" />
     <link rel="canonical" href="https://thehbrand.com/" />
 
+    <script>
+      /* thehbrand.com/bio is served by the _redirects rule; HashRouter needs
+         the hash form, so hand the bare path over to /#/bio. */
+      (function () {
+        var path = window.location.pathname.replace(/\/+$/, '');
+        if ((path === '/bio') && !window.location.hash) {
+          window.location.replace('/' + window.location.search + '#/bio');
+        }
+      })();
+    </script>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="THE H BRAND" />
     <meta property="og:title" content="THE H BRAND — 프리미엄 공간, 그 시작과 완성" />
