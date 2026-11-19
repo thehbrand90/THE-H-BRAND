@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 const { Link } = ReactRouterDOM;
 
 /**
- * Home hero — four-slide cross-dissolve.
+ * Home hero — five-slide cross-dissolve.
  *
  * Reference studied for this treatment: 일하다디자인(ilhada.com) keeps one fixed
  * wordmark over a rotating set of architectural photographs (4 slides, ~3s) and
@@ -33,23 +33,23 @@ const SLIDES: Slide[] = [
     id: '01',
     src: '/media/hero/slide-01.webp',
     srcMobile: '/media/hero/slide-01-m.webp',
-    alt: '따뜻한 우드와 스톤으로 완성한 THE H BRAND의 주방 인테리어',
-    label: 'KITCHEN',
+    alt: '자연광이 들어오는 따뜻한 베이지 톤의 거실 인테리어',
+    label: 'LIVING',
     position: '50% 50%',
   },
   {
     id: '02',
     src: '/media/hero/slide-02.webp',
     srcMobile: '/media/hero/slide-02-m.webp',
-    alt: '트라버틴 테이블과 린넨 소파로 완성한 거실',
-    label: 'LIVING',
+    alt: '월넛 키큰장과 스톤 아일랜드로 마감한 주방 인테리어',
+    label: 'KITCHEN',
     position: '50% 55%',
   },
   {
     id: '03',
     src: '/media/hero/slide-03.webp',
     srcMobile: '/media/hero/slide-03-m.webp',
-    alt: '아치형 트라버틴 개구부와 월넛 다이닝 공간',
+    alt: '곡선 벽체와 월넛 테이블이 어우러진 다이닝 공간',
     label: 'DINING',
     position: '50% 50%',
   },
@@ -57,9 +57,17 @@ const SLIDES: Slide[] = [
     id: '04',
     src: '/media/hero/slide-04.webp',
     srcMobile: '/media/hero/slide-04-m.webp',
-    alt: '린넨과 월넛으로 마감한 마스터 침실',
+    alt: '간접조명과 월넛 헤드보드로 완성한 마스터 침실',
     label: 'SUITE',
-    position: '50% 45%',
+    position: '50% 50%',
+  },
+  {
+    id: '05',
+    src: '/media/hero/slide-05.webp',
+    srcMobile: '/media/hero/slide-05-m.webp',
+    alt: '대형 포세린 타일과 플로팅 세면대로 마감한 욕실',
+    label: 'BATH',
+    position: '50% 50%',
   },
 ];
 
@@ -143,8 +151,10 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* Legibility gradients */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/45" />
+      {/* Legibility gradients — tuned for the bright, natural-light photo set:
+          the mid band carries a little more weight so white copy keeps ≥3:1 over
+          the brightest frames (living, suite) without flattening the interiors. */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/32 to-black/45" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-transparent to-black/20" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 to-transparent" />
 
@@ -154,10 +164,10 @@ const Hero: React.FC = () => {
       <div className="relative z-10 h-full max-w-[1800px] mx-auto px-5 md:px-10 lg:px-14 flex flex-col justify-between">
         {/* Top meta row (sits below the fixed navbar) */}
         <div className="flex justify-between items-start pt-24 md:pt-36">
-          <p className="kicker text-white/55 hidden sm:block">
+          <p className="kicker text-white/70 hidden sm:block">
             Interior Design &amp; Build — Gwangju · Jeonnam
           </p>
-          <p className="kicker text-white/40 hidden md:block">10 Years of Field Experience</p>
+          <p className="kicker text-white/55 hidden md:block">10 Years of Field Experience</p>
 
           {/* Compact slide counter for phones */}
           <div className="flex sm:hidden items-center gap-2.5" aria-label="히어로 사진 순서">
@@ -241,7 +251,7 @@ const Hero: React.FC = () => {
             </span>
           </div>
 
-          {/* Slide indicator: 01 ——— 04 + current room */}
+          {/* Slide indicator: 01 ——— 05 + current room */}
           <div className="flex items-center justify-center gap-4 text-white">
             <span className="font-montserrat text-[10px] tracking-[0.3em] text-white/90 tabular-nums">
               {pad(index + 1)}
