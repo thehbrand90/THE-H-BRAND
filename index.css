@@ -191,6 +191,61 @@ body {
   opacity: 1;
 }
 
+/* Legibility scrim — the photo set is bright natural light, so the darkness is
+   shaped around the copy instead of laid over the whole frame.
+   Desktop: the statement sits upper-left → a left column + a bottom rail.
+   Phone: the statement fills the lower half → the vertical gradient carries it. */
+.hero-scrim {
+  position: absolute;
+  pointer-events: none;
+}
+.hero-scrim--v {
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.86) 0%,
+    rgba(0, 0, 0, 0.14) 48%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+.hero-scrim--l {
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.6) 30%,
+    rgba(0, 0, 0, 0) 72%
+  );
+}
+.hero-scrim--top {
+  inset: 0 0 auto 0;
+  height: 240px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.34) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+@media (max-width: 767px) {
+  .hero-scrim--v {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.76) 22%,
+      rgba(0, 0, 0, 0.52) 45%,
+      rgba(0, 0, 0, 0.12) 100%
+    );
+  }
+  .hero-scrim--l {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 78%);
+  }
+  .hero-scrim--top {
+    height: 104px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  }
+}
+
 /* Slow Ken-Burns drift, staggered per slide so each return feels different */
 .hero-drift {
   animation: hero-drift 26s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;

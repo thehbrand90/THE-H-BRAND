@@ -151,12 +151,13 @@ const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* Legibility gradients — tuned for the bright, natural-light photo set:
-          the mid band carries a little more weight so white copy keeps ≥3:1 over
-          the brightest frames (living, suite) without flattening the interiors. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/32 to-black/45" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-transparent to-black/20" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 to-transparent" />
+      {/* Legibility scrim — kept as light as the photo set allows.
+          Desktop copy sits upper-left, so the darkness is a left column plus a
+          bottom rail; on phones the copy fills the lower half, so the vertical
+          gradient carries it. See .hero-scrim-* in index.css. */}
+      <div className="hero-scrim hero-scrim--v" />
+      <div className="hero-scrim hero-scrim--l" />
+      <div className="hero-scrim hero-scrim--top" />
 
       {/* Frame hairlines */}
       <div className="pointer-events-none absolute inset-x-5 md:inset-x-10 lg:inset-x-14 top-[88px] bottom-8 border-x border-white/[0.08] hidden md:block" />
@@ -167,7 +168,7 @@ const Hero: React.FC = () => {
           <p className="kicker text-white/70 hidden sm:block">
             Interior Design &amp; Build — Gwangju · Jeonnam
           </p>
-          <p className="kicker text-white/55 hidden md:block">10 Years of Field Experience</p>
+          <p className="kicker text-white/70 hidden md:block">10 Years of Field Experience</p>
 
           {/* Compact slide counter for phones */}
           <div className="flex sm:hidden items-center gap-2.5" aria-label="히어로 사진 순서">
