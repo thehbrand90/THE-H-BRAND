@@ -20,6 +20,26 @@ export interface PortfolioItem {
 
 export const mockProjects: PortfolioItem[] = [
   {
+    id: 28,
+    title: '운암동 벽산2단지',
+    year: '2026',
+    py: '56PY',
+    image: '/media/projects/p28-bs_main-1600.webp',
+    category: '50PY',
+    description: "현관에서 주방까지 이어지는 긴 동선을 하나의 재료 톤으로 묶어낸 56평형 주거 리모델링 프로젝트입니다.\n\n월넛 도어와 베이지 미장 벽면으로 현관의 시선을 정돈하고, 대형 타일 바닥과 천장 슬롯 조명으로 깊이를 만들었습니다. 거실은 월넛 베니어 패널 벽을 중심으로 크림 톤 부클레 소파와 트래버틴 테이블을 낮게 배치해 편안한 높이를 잡았고, 블랙 트랙 조명과 리브 콘솔이 공간의 선을 정리합니다. 주방과 식당은 그레이지 매트 수납과 화이트 스톤 상판으로 단정하게 구성하고, 월넛 하부장의 아일랜드를 오크 다리 식탁과 이어 붙여 가족이 머무는 자리를 한곳에 모았습니다. 하부 LED와 슬림 손잡이로 마감선은 최대한 덜어냈습니다.\n\n욕실은 베이지 대형 타일과 월행잉 세면기, LED 거울로 차분하게 마감했고, 침실과 수납 공간은 벽면 깊이를 살린 붙박이 수납으로 정리해 생활 동선을 단순하게 만들었습니다. 장식보다 재료의 결, 그리고 빛의 균형에 집중해, 56평의 넓이를 조용하고 편안한 일상으로 완성했습니다.",
+    meta: [
+      { label: "LOCATION", value: "Buk-gu, Gwangju" },
+      { label: "TYPE", value: "Residential" },
+      { label: "AREA", value: "56py" },
+      { label: "YEAR", value: "2026" },
+      { label: "DESIGN", value: "THE H BRAND Co., Ltd." },
+    ],
+    images: Array.from(
+      { length: 66 },
+      (_, i) => `/media/projects/detail/p28-${String(i + 1).padStart(3, '0')}.webp`
+    ),
+  },
+  {
     id: 27,
     title: '나주 빛가람동 중흥S클래스 1단지',
     year: '2026',
